@@ -1,0 +1,25 @@
+<!-- analyze_me/templates/login.html  2020/09/23  M.O-->
+{% extends "layout.html" %}
+{% block body %}
+
+    <section class="mc-body">
+        <div class="container">
+            <form action="/login" method=post>
+                <!-- ユーザ名インプット -->
+                <div class="form-group">
+                    <label for="InputTitle">User Name</label>
+                    <input type="text" class="form-control" id="InputTitle" name=username>
+                </div>
+                <!-- パスワードインプット -->
+                <div class="form-group">
+                    <label for="InputPassword">Password</label>
+                    <input type="password" class="form-control" id="InputPassword" name=password>
+                </div>
+                <!-- ログインボタン -->
+                <button type="submit" class="btn btn-primary">LOGIN</button>
+
+            </form>
+        </div>
+    </section>
+
+{% endblock %}
