@@ -21,14 +21,20 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link text-dark" href="{{ url_for('show_entries') }}">個人ページ<span class="sr-only">(current)</span></a>
+                        <a class="nav-link text-dark" href="{{ url_for('analyzer_list') }}">分析<span class="sr-only">(current)</span></a>
                     </li>
 
                     {% if not session.logged_in %}
+
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="{{ url_for('login') }}">LOGIN</a>
                     </li>
                     {% else %}
+
+                    <li class="nav-item active">
+                        <a class="nav-link text-dark" href="{{ url_for('show_entries') }}">過去ログ</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="{{ url_for('logout') }}">LOGOUT</a>
                     </li>

@@ -1,7 +1,7 @@
 #analyze_me/config.py       2020/9/17   M.O
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///analyze_me.db'
-SQLALCHEMY_TRACK_MODIFICATIONS = True
+#SQLALCHEMY_DATABASE_URI = 'sqlite:///analyze_me.db'
+#SQLALCHEMY_TRACK_MODIFICATIONS = True
 DEBUG = True
 SECRET_KEY = 'sedret_key'
 USERNAME = 'john'
