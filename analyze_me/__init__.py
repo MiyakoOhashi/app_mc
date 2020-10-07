@@ -6,4 +6,4 @@ app = Flask(__name__)
 app.config.from_object('analyze_me.config')
 #db = SQLAlchemy(app)
 
-import analyze_me.views
+from analyze_me.views import views, analyzes

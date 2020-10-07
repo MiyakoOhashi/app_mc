@@ -5,6 +5,18 @@
 <section>
     <div class="mc-body">
         <h2>質問</h2>
+        <p></p>
+
+        <form action="{{ url_for('') }}" method="POST">
+            <input type="radio" name="answer" id="y" value="1">
+            <label for="y">はい</label>
+            <br>
+            <input type="radio" name="answer" id="n" value="0">
+            <label for="n">いいえ</label>
+            <br>
+            <button class="btn" type="submit">決定</button>
+
+        </form>
     </div>
 </section>
 
