@@ -9,19 +9,19 @@
         <p>実施するテストを選ぶと解説ページに飛びます</p>
         <ul>
             <li>
-                <a href="#">TEGエゴグラム</a>
+                <a href="{{ url_for('description', id='teg') }}" >TEGエゴグラム</a>
             </li>
             <li>
-                <a href="#">POMS</a>
+                <a href="{{ url_for('description', id='pom') }}" >POMS</a>
             </li>
             <li>
-                <a href="#">CES-D</a>
+                <a href="{{ url_for('description', id='ces') }}" >CES-D</a>
             </li>
             <li>
-                <a href="#">FUチェック</a>
+                <a href="{{ url_for('description', id='fu') }}" >FUチェック</a>
             </li>
             <li>
-                <a href="#">EQチェック</a>
+                <a href="{{ url_for('description', id='eq') }}" >EQチェック</a>
             </li>
         </ul>
     </div>

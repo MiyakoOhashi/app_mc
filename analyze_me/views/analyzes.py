@@ -1,11 +1,11 @@
 #analyze_me/views.py       2020/10/07   M.O
 #コンテンツ関連viewファイル
-
 from flask import request, redirect, url_for, \
     render_template, flash, session
 from analyze_me import app
 #from analyze_me import db
 #from analyze_me.models.entries import Entry
+from analyze_me.analyzer.fu_check import FU
 
 #トップページ
 @app.route('/')
@@ -25,11 +25,23 @@ def analyzer_list():
     return render_template('analyzer/list.html')
 
 #アナライザ説明
-@app.route('/description')
-def description():
-    return render_template('analyzer/description.html')
+@app.route('/description/<id>')
+def description(id):
+    return render_template('analyzer/description.html', id=id)
 
 #アナライザ本体
-@app.route('/analyzer')
-def analyze():
-    return render_template('analyzer/query.html')
+@app.route('/analyzer/<id>')
+def analyzer(id):
+    if id == "fu":  # フュージョンチェック
+        name = 'FUチェック'
+        ana = FU()
+    #elif id == "eq":  # 脱中心化チェック
+        #analyzer = EQ()
+    #elif id == "ces":  # CES-D
+        #analyzer = CES_D()
+    #elif id == "pom":  # POMS
+        #analyzer = POMS()
+    #elif id == "teg":  # TEG
+        #analyzer = TEG()
+    return render_template('analyzer/query.html',
+                           id=id, ana=ana, name=name)
