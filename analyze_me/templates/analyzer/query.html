@@ -5,20 +5,18 @@
 <section>
     <div class="mc-body">
         <h3>{{ name }}</h3>
-        {% for query in range(len(ana.queries)) %}
-        <h6>質問{{ query+1 }}</h6>
-        <p>{{ ana.queries[query] }}</p>
+        <h5>質問{{ ana.que+1 }}</h5>
+        <p>{{ ana.queries[ana.que] }}</p>
 
-        <form action="ana.analyze(input.id)"
-              method="POST">
-            {% for opt in range(len(ana.options)) %}
-            <input type="radio" name="answer" id=opt >
-            <label for=opt >{{ ana.options[opt] }}</label>
+        <form action="{{ url_for('analyzer', id=id ) }}" method="POST">
+            {% for opt in ana.q_len %}
+            <input type="radio" name="answer" id="opt" value="opt" >
+            <label for="opt" >{{ ana.options[opt] }}</label>
             <br>
             {% endfor %}
             <button class="btn" type="submit">決定</button>
         </form>
-        {% endfor %}
+
     </div>
 </section>
 

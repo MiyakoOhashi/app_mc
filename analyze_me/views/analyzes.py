@@ -30,18 +30,23 @@ def description(id):
     return render_template('analyzer/description.html', id=id)
 
 #アナライザ本体
-@app.route('/analyzer/<id>')
+@app.route('/analyzer/<id>', methods=['GET', 'POST'])
 def analyzer(id):
-    if id == "fu":  # フュージョンチェック
-        name = 'FUチェック'
-        ana = FU()
-    #elif id == "eq":  # 脱中心化チェック
-        #analyzer = EQ()
-    #elif id == "ces":  # CES-D
-        #analyzer = CES_D()
-    #elif id == "pom":  # POMS
-        #analyzer = POMS()
-    #elif id == "teg":  # TEG
-        #analyzer = TEG()
-    return render_template('analyzer/query.html',
-                           id=id, ana=ana, name=name)
+    if request.method == 'GET':
+        if id == "fu":  # フュージョンチェック
+            name = 'FUチェック'
+            ana = FU()
+        #elif id == "eq":  # 脱中心化チェック
+            #analyzer = EQ()
+        #elif id == "ces":  # CES-D
+            #analyzer = CES_D()
+        #elif id == "pom":  # POMS
+            #analyzer = POMS()
+        #elif id == "teg":  # TEG
+            #analyzer = TEG()
+    else:
+        ans = request.form.get('radio')
+        ana.cal(ans)
+    return render_template('analyzer/query.html',\
+                            id=id, ana=ana, name=name)
+
