@@ -44,7 +44,8 @@ def analyzer(id):
             #analyzer = POMS()
         #elif id == "teg":  # TEG
             #analyzer = TEG()
-    else:
+
+    if request.method == 'POST':
         ans = request.form.get('radio')
         ana.cal(ans)
     return render_template('analyzer/query.html',\

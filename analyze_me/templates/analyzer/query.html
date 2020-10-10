@@ -10,11 +10,11 @@
 
         <form action="{{ url_for('analyzer', id=id ) }}" method="POST">
             {% for opt in ana.q_len %}
-            <input type="radio" name="answer" id="opt" value="opt" >
-            <label for="opt" >{{ ana.options[opt] }}</label>
+            <input type="radio" name="answer" id={{ opt }} value={{ opt }} >
+            <label for={{ opt }} >{{ ana.options[opt] }}</label>
             <br>
             {% endfor %}
-            <button class="btn" type="submit">決定</button>
+            <input class="btn btn-primary" type="submit" value="決定">
         </form>
 
     </div>
