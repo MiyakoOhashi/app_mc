@@ -3,6 +3,6 @@
 #SQLALCHEMY_DATABASE_URI = 'sqlite:///analyze_me.db'
 #SQLALCHEMY_TRACK_MODIFICATIONS = True
 DEBUG = True
-SECRET_KEY = 'sedret_key'
+SECRET_KEY = 'secret_key'
 USERNAME = 'john'
 PASSWORD = 'due123'

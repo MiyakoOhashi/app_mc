@@ -2,6 +2,12 @@
 
 class FU:                           #フュージョンチェックメインプログラム
     def __init__(self):
+        #テストID
+        self.id = "fu"
+        #テスト名
+        self.name = "FUチェック"
+        #説明
+        self.desc = "準備中"
         #質問リスト
         self.queries = ["自分の思考が、苦悩や心の痛みの原因になっている                                           ",
                         "考えていることに囚われすぎて、自分が一番したいことをすることができない                        ",
@@ -11,9 +17,8 @@ class FU:                           #フュージョンチェックメインプ�
                         "自分の考えにかなり巻き込まれがちだ                                                     ",
                         "動揺するような考えに執着しないほうが自分の役に立つと分かっていても、そうすることにとても苦労する   "
                         ]
-        self.q_len = range(len(self.queries))
+        self.q_len = len(self.queries)
         self.que = 0
-
         #回答選択肢リスト
         self.options = ["全く当てはまらない",
                         "極稀に当てはまる",
@@ -24,10 +29,8 @@ class FU:                           #フュージョンチェックメインプ�
                         "いつも当てはまる"
                         ]
         self.o_len = range(len(self.options))
-
         #回答格納リスト
         self.answers = []
-
         #回答合計値
         self.a_sum = 0
 
@@ -35,9 +38,11 @@ class FU:                           #フュージョンチェックメインプ�
         self.answers.append(ans)
         self.a_sum += ans
         self.que += 1
+        print("回答：{}".format(self.answers))
+        print("合計値：{}".format(self.a_sum))
+        print("ただいまの質問：{}".format(self.que))
 
-
-    def judgement(self, a_sum):     #テスト結果判定（フュージョン傾向）
+    def judge(self, a_sum):     #テスト結果判定（フュージョン傾向）
         if a_sum > 27:
             self.judge0 = "思考と現実を混同し、考え込みやすい傾向があります"
         elif a_sum == 27:

@@ -4,6 +4,27 @@
 from flask import request, redirect, url_for, \
     render_template, flash, session
 from analyze_me import app
+from functools import wraps
+
+#ログイン承認デレコーダ
+def login_required(view):
+    @wraps(view)
+    def inner(*args, **kwargs):
+        if not session.get('logged_in'):
+            return redirect(url_for('login'))
+        return view(*args, **kwargs)
+    return inner
+
+#トップページ
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+#個人情報(過去log)ページ
+@app.route('/log')
+@login_required
+def show_entries():
+    return render_template('entries/log.html')
 
 #ログイン
 @app.route('/login', methods=['GET', 'POST'])
@@ -25,4 +46,9 @@ def login():
 def logout():
     session.pop('logged_in', None)
     flash('ログアウトしました')
+    return redirect(url_for('index'))
+
+#404エラー時処理
+@app.errorhandler(404)
+def non_existant_route(error):
     return redirect(url_for('index'))
