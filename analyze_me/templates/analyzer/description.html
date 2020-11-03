@@ -4,9 +4,12 @@
 
 <section>
     <div class="mc-body">
-        <h2>{{ ana.name }}</h2>
-        <h3>説明</h3>
+        <h3>{{ ana.name }}</h3>
+        <br>
+        <h5>説明</h5>
+        <br>
         <p>{{ ana.desc }}</p>
+        <br>
         <a href="{{ url_for('analyzes.analyzer', id=id) }}">テストを始める</a>
     </div>
 </section>

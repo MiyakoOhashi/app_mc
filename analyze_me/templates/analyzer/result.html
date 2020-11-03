@@ -1,0 +1,28 @@
+<!-- analyze_me/templates/analyzer/result.html 2020/11/03  M.O-->
+{% extends "layout.html" %}
+{% block body %}
+
+<section>
+    <div class="mc-body">
+        <h3>{{ ana.name }}</h3>
+        <br>
+        <h5>判定：　{{ ana.judge0 }}</h5>
+        <br>
+        <table border="1">
+            <tr>
+                <th>No.</th>
+                <th>質問</th>
+                <th>回答</th>
+            </tr>
+        {% for que in ana.q_range %}
+            <tr>
+                <td>{{ que+1 }}</td>
+                <td>{{ ana.queries[que] }}</td>
+                <td>{{ ana.answers[que] }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+</section>
+
+{% endblock %}

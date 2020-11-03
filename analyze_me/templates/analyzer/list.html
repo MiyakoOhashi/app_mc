@@ -15,13 +15,13 @@
                 <a href="#" >POMS</a>
             </li>
             <li>
-                <a href="#" >CES-D</a>
+                <a href= "{{ url_for('analyzes.description', id='ces') }}" >CES-D</a>
             </li>
             <li>
                 <a href="{{ url_for('analyzes.description', id='fu') }}" >FUチェック</a>
             </li>
             <li>
-                <a href="#" >EQチェック</a>
+                <a href="{{ url_for('analyzes.description', id='eq') }}"  >EQチェック</a>
             </li>
         </ul>
     </div>
