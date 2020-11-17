@@ -40,10 +40,9 @@ class EQ:                           #EQ（脱中心化）チェックメイン�
         self.answers.append(self.options[ans])
         self.a_sum += ans
         self.que += 1
+        print("ただいまの質問：{}".format(self.que))
         print("回答：{}".format(self.answers))
         print("合計値：{}".format(self.a_sum))
-        print("ただいまの質問：{}".format(self.que))
-        print("質問レンジ{}".format(self.q_range))
 
     def judge(self, a_sum):     #テスト結果判定（脱中心化傾向）
         if a_sum >= 25:

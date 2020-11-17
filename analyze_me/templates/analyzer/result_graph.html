@@ -1,0 +1,36 @@
+<!-- analyze_me/templates/analyzer/result_graph.html 2020/11/06  M.O-->
+{% extends "layout.html" %}
+{% block body %}
+
+<section>
+    <div class="mc-body">
+        <h3>{{ ana.name }}</h3>
+        <br>
+        <h5>結果：</h5>
+        <table>
+            <tr>
+                {% for f in ana.f_range %}
+                    <td>  {{ ana.fac[f] }} :  </td>
+                    <td>  {{ ana.a_sum[f] }}  </td>
+                {% endfor %}
+            </tr>
+        </table>
+        <br>
+        <table border="1">
+            <tr>
+                <th>No.</th>
+                <th>質問</th>
+                <th>回答</th>
+            </tr>
+        {% for que in ana.q_range %}
+            <tr>
+                <td>{{ que+1 }}</td>
+                <td>{{ ana.queries[que] }}</td>
+                <td>{{ ana.answers[que] }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+</section>
+
+{% endblock %}

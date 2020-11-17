@@ -9,4 +9,7 @@ app.config.from_object('analyze_me.config')
 from analyze_me.views.analyzes import analyzes
 app.register_blueprint(analyzes, url_prefix='/analyzes')
 
+from analyze_me.views.examin import examin
+app.register_blueprint(examin, url_prefix='/examin')
+
 from analyze_me.views import views
