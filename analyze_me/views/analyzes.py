@@ -3,7 +3,6 @@
 from flask import request, redirect, url_for, \
     render_template, flash, session
 from flask import Blueprint, g
-from analyze_me.analyzer.fu_check import FU
 #from analyze_me import db
 #from analyze_me.models.entries import Entry
 from analyze_me.views.views import login_required
@@ -27,8 +26,6 @@ def analyzer_select(id):
     if not id is None:
         session['test_start'] = True
         session['id'] = id
-        #if id is 'fu':
-        #    g.ana = FU()
         print("SESSION:{}".format(session['test_start']))
         print("SESSION:{}".format(session['id']))
         return redirect(url_for('examin.description', id=id))

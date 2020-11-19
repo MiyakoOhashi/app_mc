@@ -1,12 +1,16 @@
 <!-- analyze_me/templates/index.html 2020/09/23  M.O-->
 {% extends "layout.html" %}
-{% block body %}
+<!-- ヘッダー　-->
+{% block head %}
+    {{ super() }}
+{% endblock %}
 
-<section>
-    <div class="mc-body">
+<!-- ボディ　-->
+{% block body %}
+<section class="conA">
+    <div>
         <h1>ANALyZE ME</h1>
         <a href="{{ url_for('analyzes.analyzer_list') }}">START</a>
     </div>
 </section>
-
 {% endblock %}

@@ -13,7 +13,6 @@ from analyze_me.analyzer.eq_check import EQ
 from analyze_me.analyzer.ces_d import CES_D
 from analyze_me.analyzer.poms import POMS
 from analyze_me.analyzer.teg import TEG
-#from analyze_me.views.analyzes import g
 from analyze_me.views.analyzes import analyzes
 
 #グローバル変数（各テスト）設定
@@ -35,8 +34,6 @@ def add_analyzer(endpoint, values):
     id = session['id']
     if not endpoint is None:
         if test_start is True:
-            #values["ana"] = g.ana
-
             if id == 'fu':
                 global fu
                 values['ana'] = fu

@@ -3,7 +3,7 @@
 {% block body %}
 
 <section>
-    <div class="mc-body">
+    <div>
         <h3>{{ ana.name }}</h3>
         <br>
         <h5>結果：</h5>
@@ -30,6 +30,8 @@
             </tr>
         {% endfor %}
         </table>
+        <br>
+        <a href="{{ url_for('analyzes.analyzer_list') }}">リストに戻る</a>
     </div>
 </section>
 
