@@ -2,11 +2,14 @@
 
 /* 基本色 */
 :root {
-    --main-color:　#72A2E6;
-    --accent-color: #EBA198;
-    --dark-color: #3D6399;
+    --main-color: #77C7E6;
+    --accent-color: #E68E9F;
+    --dark-color: #3A7E99;
     --text-bright-color: #fff;
-    --text-dark-color: #000
+    --text-dark-color: #000;
+    --gray-color: #ddd;
+    --large-width: 1000px;
+    --middle-width: 800px;
 }
 
 /* 基本設定：ページ全体 */
@@ -17,32 +20,198 @@ body {
         'sans-serif';
 }
 
-/* コンテンツA：　ヒーローイメージ */
-.conA {
+/* INDEX：　ヒーローイメージ */
+.indexA {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     min-height: 450px;
-    background-image: url(img/1193823.png);
+    background-image: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url(img/048059.png);
     background-position: center;
-    background-size: 100vh;
+    background-size: cover;
     color: #000;
     color: var(--text-dark-color);
     text-align: center;
 }
 
-.conA h1 {
+.indexA h1 {
     margin-top: 0;
     margin-bottom: 10;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 9vw;
+    font-family: 'Big Shoulders Stencil Display', cursive;
+    font-size: 15vw;
     letter-spacing: 0.1em;
     margin-left: 0.1em;
 }
 
+.indexA img {
+    width: 15%;
+}
+
+.indexA a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 50px;
+    border: solid 3px currentColor;
+    border-radius: 6px;
+    background-color: #E68E9F;
+    background-color: var(--accent-color);
+    color: #fff;
+    color: var(--text-bright-color);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.indexA a:hover {
+    text-decoration: none;
+    background-image: linear-gradient(
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0.2)
+    );
+}
+
 @media (min-width: 768px) {
-    .conA h1 {
-        font-size: 69px;
+    .indexA h1 {
+        font-size: 115px;
+    }
+}
+
+/* LIST */
+.listA .container {
+    margin-top: 60px;
+    padding: 30px 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.listA h1 {
+    margin-top: 0;
+    margin-bottom: 10;
+    font-family: 'Big Shoulders Stencil Display', cursive;
+    font-size: 50px;
+    letter-spacing: 0.1em;
+    margin-left: 0.1em;
+}
+
+.listA ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.listA a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 50px;
+    border: solid 3px currentColor;
+    border-radius: 6px;
+    background-color: #E68E9F;
+    background-color: var(--accent-color);
+    color: #fff;
+    color: var(--text-bright-color);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+/* ヘッダー */
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    background-color: rgba(255,255,255,0.5);
+}
+
+/* ヘッダーA: サイト名 */
+.headA {
+    display: inline-block;
+    line-height: 60px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #77C7E6;
+    background-color: var(--main-color);
+    color: #fff;
+    color: var(--text-bright-color);
+    font-family: 'Big Shoulders Stencil Display', cursive;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+/* ヘッダーB: ナビゲーションメニュー */
+.headB ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.headB a {
+    display: block;
+    padding: 15px;
+    color: inherit;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.headB a:hover {
+    background-color: rgba(0,0,0,0.3);
+}
+
+@media (min-width: 768px) {
+    header .conH {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1000px;
+        max-width: var(--large-width);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .headB ul {
+        display: flex;
+    }
+}
+
+/* ヘッダーC: トグルボタン */
+/* 小さい画面用の設定 */
+@media (max-width: 767px) {
+    header .conH-small {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .headC {
+        margin-right: 15px;
+        padding: 0;
+        border: none;
+        outline: none;
+        background: none;
+        font-size: 28px;
+        opacity: 0.5;
+        cursor: pointer;
+    }
+
+    .headC:hover {
+        opacity: 0.3;
+    }
+
+    .headB {
+        display: none;
+    }
+}
+
+/* 大きい画面用の設定 */
+@media (min-width: 768px) {
+    .headC {
+        display: none;
+    }
+
+    .headB {
+        display: block !important;
     }
 }
