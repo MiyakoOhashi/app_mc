@@ -5,7 +5,9 @@ class TEG:                           #フュージョンチェックメインプ
         #テストID
         self.id = "teg"
         #テスト名
-        self.name = "TEGエゴグラム"
+        self.name = "TEG-Egogram"
+        # サブ名
+        self.sub = "性格傾向チェック"
         #説明
         self.desc = "準備中"
         #質問リスト

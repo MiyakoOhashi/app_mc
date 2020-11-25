@@ -6,6 +6,8 @@ class POMS:                           #フュージョンチェックメイン�
         self.id = "pom"
         #テスト名
         self.name = "POMS"
+        #サブ名
+        self.sub = "現在のうつ傾向チェック"
         #説明
         self.desc = "準備中"
         #質問リスト

@@ -6,6 +6,8 @@ class CES_D:                           #CES-Dメインプログラム
         self.id = "ces"
         #テスト名
         self.name = "CES-D"
+        #サブ名
+        self.sub = "現在のうつ傾向チェック"
         #説明
         self.desc = "準備中"
         #質問リスト

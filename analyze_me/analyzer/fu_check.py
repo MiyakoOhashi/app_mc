@@ -5,7 +5,9 @@ class FU:                           #フュージョンチェックメインプ�
         #テストID
         self.id = "fu"
         #テスト名
-        self.name = "FUチェック"
+        self.name = "FU-Check"
+        #サブ名
+        self.sub = "フュージョン傾向チェック"
         #説明
         self.desc = "準備中"
         #質問リスト

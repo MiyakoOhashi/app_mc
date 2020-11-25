@@ -5,6 +5,7 @@
     --main-color: #77C7E6;
     --accent-color: #E68E9F;
     --dark-color: #3A7E99;
+    --opposite-color: #9AE665;
     --text-bright-color: #fff;
     --text-dark-color: #000;
     --gray-color: #ddd;
@@ -64,6 +65,8 @@ body {
 
 .indexA a:hover {
     text-decoration: none;
+    color: #fff;
+    color: var(--text-bright-color);
     background-image: linear-gradient(
         rgba(255,255,255,0.2),
         rgba(255,255,255,0.2)
@@ -76,7 +79,7 @@ body {
     }
 }
 
-/* LIST */
+/* LIST画面 */
 .listA .container {
     margin-top: 60px;
     padding: 30px 10px;
@@ -89,15 +92,16 @@ body {
 
 .listA h1 {
     margin-top: 0;
-    margin-bottom: 10;
+    margin-bottom: 15;
     font-family: 'Big Shoulders Stencil Display', cursive;
-    font-size: 50px;
+    font-size: 70px;
     letter-spacing: 0.1em;
     margin-left: 0.1em;
 }
 
 .listA ul {
-    margin: 0;
+    margin-top: 10;
+    margin-bottom: 0;
     padding: 0;
     list-style: none;
 }
@@ -105,7 +109,8 @@ body {
 .listA a {
     display: inline-block;
     margin-top: 10px;
-    padding: 10px 50px;
+    padding: 10px;
+    width: 300px;
     border: solid 3px currentColor;
     border-radius: 6px;
     background-color: #E68E9F;
@@ -115,6 +120,152 @@ body {
     font-size: 14px;
     text-decoration: none;
 }
+
+.listA a:hover {
+    color: #fff;
+    color: var(--text-bright-color);
+    text-decoration: none;
+    background-image: linear-gradient(
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0.2)
+    );
+}
+
+/* 説明画面 */
+.descA .container {
+    margin-top: 60px;
+    padding: 30px 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.descA h1 {
+    margin-top: 0;
+    margin-bottom: 15;
+    font-family: 'Big Shoulders Stencil Display', cursive;
+    font-size: 70px;
+    letter-spacing: 0.1em;
+    margin-left: 0.1em;
+}
+
+.descA h3 {
+    margin-top: 0;
+    margin-bottom: 15;
+    font-size: 30px;
+}
+
+.descA a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px;
+    width: 300px;
+    border: solid 3px currentColor;
+    border-radius: 6px;
+    background-color: #E68E9F;
+    background-color: var(--accent-color);
+    color: #fff;
+    color: var(--text-bright-color);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.descA a:hover {
+    color: #fff;
+    color: var(--text-bright-color);
+    text-decoration: none;
+    background-image: linear-gradient(
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0.2)
+    );
+}
+
+/* 質問画面 */
+.queA .container {
+    margin-top: 60px;
+    padding: 30px 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.queA h1 {
+    margin-top: 0;
+    margin-bottom: 15;
+    font-family: 'Big Shoulders Stencil Display', cursive;
+    font-size: 70px;
+    letter-spacing: 0.1em;
+    margin-left: 0.1em;
+}
+
+.queA .radio {
+    display: none;
+}
+
+.queA .label {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 10px;
+    width: 300px;
+    border: solid 3px currentColor;
+    border-radius: 6px;
+    background-color: #9AE665;
+    background-color: var(--opposite-color);
+    color: #fff;
+    color: var(--text-bright-color);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.queA .label:hover {
+    color: #fff;
+    color: var(--text-bright-color);
+    text-decoration: none;
+    background-image: linear-gradient(
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0.2)
+    );
+}
+
+.queA .input[type="radio"]:checked + label {
+    color: #fff;
+    color: var(--text-bright-color);
+    text-decoration: none;
+    background-image: linear-gradient(
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0.2)
+    );
+}
+
+.queA .button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px;
+    width: 300px;
+    border: solid 3px currentColor;
+    border-radius: 6px;
+    background-color: #E68E9F;
+    background-color: var(--accent-color);
+    color: #fff;
+    color: var(--text-bright-color);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.queA .button:hover {
+    color: #fff;
+    color: var(--text-bright-color);
+    text-decoration: none;
+    background-image: linear-gradient(
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0.2)
+    );
+}
+
 
 /* ヘッダー */
 header {
@@ -141,6 +292,16 @@ header {
     text-decoration: none;
 }
 
+.headA:hover {
+    text-decoration: none;
+    color: #fff;
+    color: var(--text-bright-color);
+    background-image: linear-gradient(
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0.2)
+    );
+}
+
 /* ヘッダーB: ナビゲーションメニュー */
 .headB ul {
     margin: 0;
@@ -157,6 +318,8 @@ header {
 }
 
 .headB a:hover {
+    text-decoration: none;
+    color: inherit;
     background-color: rgba(0,0,0,0.3);
 }
 

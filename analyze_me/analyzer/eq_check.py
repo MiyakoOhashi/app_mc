@@ -5,7 +5,9 @@ class EQ:                           #EQ（脱中心化）チェックメイン�
         #テストID
         self.id = "eq"
         #テスト名
-        self.name = "EQ(脱中心化)チェック"
+        self.name = "EQ-Check"
+        #サブ名
+        self.sub = "脱中心化チェック"
         #説明
         self.desc = "準備中"
         #質問リスト
