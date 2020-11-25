@@ -111,7 +111,7 @@ class TEG:                           #フュージョンチェックメインプ
         print("ただいまの質問：{}".format(self.que))
         print("回答：{}".format(self.answers))
         print("合計値：{}".format(self.a_sum))
-        print("因子数{}".format(self.f_ragne))
+        print("因子数{}".format(self.f_range))
 
     def judge(self, a_sum):     #テスト結果判定（フュージョン傾向）
         pass

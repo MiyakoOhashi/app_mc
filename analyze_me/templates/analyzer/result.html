@@ -2,11 +2,16 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<section>
-    <div>
-        <h3>{{ ana.name }}</h3>
+<section class="resA">
+    <div class="container">
+        <h1>{{ ana.name }}</h1>
         <br>
-        <h5>判定：　{{ ana.judge0 }}</h5>
+        <h5>
+            <span class="far fa-gem"></span>
+             判定
+            <span class="far fa-gem"></span>
+        </h5>
+        <p>{{ ana.judge0 }}</p>
         <br>
         <table border="1">
             <tr>
