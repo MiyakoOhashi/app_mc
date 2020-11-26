@@ -3,10 +3,12 @@
 {% block body %}
 
 <section class="listA">
-    <div class="container">
+    <div class="con">
 
-        <h1>ANALyZER LIST</h1>
-        <p>実施するテストを選ぶと解説ページに飛びます</p>
+        <h2>ANALyZER LIST</h2>
+        <p>実施するテストを選ぶと解説ページに移動します</p>
+        <p class="symbol"><span class="far fa-gem"></span></p>
+
         <ul>
             <li>
                 <a href="{{ url_for('analyzes.analyzer_select', id='teg') }}" >TEGエゴグラム</a>

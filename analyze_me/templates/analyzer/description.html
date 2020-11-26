@@ -3,15 +3,18 @@
 {% block body %}
 
 <section class="descA">
-    <div class="container">
-        <h1>{{ ana.name }}</h1>
-        <h3>{{ ana.sub }}</h3>
-        <br>
+    <div class="con">
+
+        <h2>{{ ana.name }}</h2>
+        <h5>{{ ana.sub }}</h5>
+        <p class="symbol"><span class="far fa-gem"></span></p>
+
         <h5>説明</h5>
-        <br>
+
         <p>{{ ana.desc }}</p>
-        <br>
+
         <a href="{{ url_for('examin.analyzer', id=id) }}">テストを始める</a>
+
     </div>
 </section>
 

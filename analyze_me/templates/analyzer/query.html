@@ -3,12 +3,14 @@
 {% block body %}
 
 <section class="queA">
-    <div class="container">
-        <h1>{{ ana.name }}</h1>
-        <br>
+    <div class="con">
+
+        <h2>{{ ana.name }}</h2>
+        <p class="symbol"><span class="far fa-gem"></span></p>
+
         <h5>質問{{ ana.que+1 }}</h5>
-        <p>{{ ana.queries[ana.que] }}</p>
-        <br>
+        <p class="quest">{{ ana.queries[ana.que] }}</p>
+
         <form action="{{ url_for('examin.analyzer', id=id ) }}" method="POST">
             {% for opt in ana.o_range %}
             <input class="radio" type="radio" name="answer" id={{ opt }} value={{ opt }} >

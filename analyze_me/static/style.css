@@ -10,25 +10,25 @@
     --text-dark-color: #000;
     --gray-color: #ddd;
     --large-width: 1000px;
-    --middle-width: 800px;
+    --middle-width: 900px;
 }
 
 /* 基本設定：フォントサイズ */
 @media (max-width: 599px) {
     :root {
-        font-size: 14px;
+        font-size: 12px;
     }
 }
 
 @media (min-width: 600px) and (max-width: 799px) {
     :root {
-        font-size: 16px;
+        font-size: 14px;
     }
 }
 
 @media (min-width: 800px) {
     :root {
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 
@@ -57,7 +57,7 @@ body {
 
 .indexA h1 {
     margin-top: 0;
-    margin-bottom: 10;
+    margin-bottom: 30px;
     font-family: 'Big Shoulders Stencil Display', cursive;
     font-size: 15vw;
     letter-spacing: 0.1em;
@@ -70,7 +70,6 @@ body {
 
 .indexA a {
     display: inline-block;
-    margin-top: 20px;
     padding: 10px 50px;
     border: solid 3px currentColor;
     border-radius: 6px;
@@ -99,35 +98,63 @@ body {
 }
 
 /* LIST画面 */
-.listA .container {
-    margin-top: 60px;
-    padding: 30px 10px;
-    align-items: center;
+.listA {
+    display: flex;
+    align-items: start;
     justify-content: center;
+    height: 100vh;
+    min-height: 450px;
+    width: 100vw;
+    min-width: 400px;
+    color: #000;
+    color: var(--text-dark-color);
     text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
 
-.listA h1 {
-    margin-top: 0;
-    margin-bottom: 15;
+.listA .con {
+    margin-top: 60px;
+    max-width: 900px;
+    max-width: var(--middle-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.listA h2 {
+    margin: 30px 0 0;
     font-family: 'Big Shoulders Stencil Display', cursive;
-    font-size: 70px;
+    font-size: 60px;
     letter-spacing: 0.1em;
     margin-left: 0.1em;
 }
 
+.listA p {
+    margin: 15px 0 0;
+}
+
+.listA .symbol {
+    margin: 20px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 28px;
+    opacity: 0.5;
+}
+
 .listA ul {
-    margin-top: 10;
-    margin-bottom: 0;
+    margin: 0;
     padding: 0;
     list-style: none;
 }
 
+.listA li {
+    margin-top: 10px;
+}
+
 .listA a {
     display: inline-block;
-    margin-top: 10px;
     padding: 10px;
     width: 300px;
     border: solid 3px currentColor;
@@ -151,34 +178,58 @@ body {
 }
 
 /* 説明画面 */
-.descA .container {
-    margin-top: 60px;
-    padding: 30px 10px;
-    align-items: center;
+.descA {
+    display: flex;
+    align-items: start;
     justify-content: center;
+    height: 100vh;
+    min-height: 450px;
+    width: 100vw;
+    min-width: 400px;
+    color: #000;
+    color: var(--text-dark-color);
     text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
 
-.descA h1 {
-    margin-top: 0;
-    margin-bottom: 15;
+.descA .con {
+    margin-top: 60px;
+    max-width: 900px;
+    max-width: var(--middle-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.descA h2 {
+    margin: 30px 0 0;
     font-family: 'Big Shoulders Stencil Display', cursive;
-    font-size: 70px;
+    font-size: 60px;
     letter-spacing: 0.1em;
     margin-left: 0.1em;
 }
 
-.descA h3 {
-    margin-top: 0;
-    margin-bottom: 15;
-    font-size: 30px;
+.descA h5 {
+    margin: 15px 0;
+    font-size: 20px;
+}
+
+.descA .symbol {
+    margin: 20px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 28px;
+    opacity: 0.5;
+}
+
+.descA p {
+    margin: 0;
 }
 
 .descA a {
     display: inline-block;
-    margin-top: 10px;
     padding: 10px;
     width: 300px;
     border: solid 3px currentColor;
@@ -202,25 +253,54 @@ body {
 }
 
 /* 質問画面 */
-.queA .container {
-    margin-top: 60px;
-    padding: 30px 10px;
-    align-items: center;
+.queA {
+    display: flex;
+    align-items: start;
     justify-content: center;
+    height: 100vh;
+    min-height: 450px;
+    width: 100vw;
+    min-width: 400px;
+    color: #000;
+    color: var(--text-dark-color);
     text-align: center;
-    max-width: 800px:
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.queA .con {
+    margin-top: 60px;
+    max-width: 900px;
     max-width: var(--middle-width);
     margin-left: auto;
     margin-right: auto;
 }
 
-.queA h1 {
-    margin-top: 0;
-    margin-bottom: 15;
+.queA h2 {
+    margin: 30px 0 0;
     font-family: 'Big Shoulders Stencil Display', cursive;
-    font-size: 70px;
+    font-size: 60px;
     letter-spacing: 0.1em;
     margin-left: 0.1em;
+}
+
+.queA h5 {
+    margin: 0 0 15px;
+    font-size: 20px;
+}
+
+.queA .symbol {
+    margin: 20px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 28px;
+    opacity: 0.5;
+}
+
+.queA .quest {
+    margin: 0 0 20px;
 }
 
 .queA .radio {
@@ -229,7 +309,7 @@ body {
 
 .queA .label {
     display: inline-block;
-    margin-top: 3px;
+    margin-bottom: 5px;
     padding: 10px;
     width: 300px;
     border: solid 1px currentColor;
@@ -264,7 +344,7 @@ body {
 
 .queA .button {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 5px;
     padding: 10px;
     width: 300px;
     border: solid 3px currentColor;
@@ -288,35 +368,67 @@ body {
 }
 
 /* 結果表示画面A */
-.resA .container {
-    margin-top: 60px;
-    padding: 30px 10px;
-    align-items: center;
+.resA {
+    display: flex;
+    align-items: start;
     justify-content: center;
+    height: 100vh;
+    min-height: 450px;
+    width: 100vw;
+    min-width: 400px;
+    color: #000;
+    color: var(--text-dark-color);
     text-align: center;
-    max-width: 800px:
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.resA .con {
+    margin-top: 60px;
+    max-width: 900px;
     max-width: var(--middle-width);
     margin-left: auto;
     margin-right: auto;
 }
 
-.resA h1 {
-    margin-top: 0;
-    margin-bottom: 15;
+.resA h2 {
+    margin: 30px 0 0;
     font-family: 'Big Shoulders Stencil Display', cursive;
-    font-size: 70px;
+    font-size: 60px;
     letter-spacing: 0.1em;
     margin-left: 0.1em;
 }
 
+.resA h5 {
+    margin: 0 0 15px;
+    font-size: 20px;
+}
+
+.resA .symbol {
+    margin: 20px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 28px;
+    opacity: 0.5;
+}
+
+.resA p {
+    margin: 0 0 30px;
+}
+
 .resA table {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 10px 15px;
+    font-size: 12px;
+}
+
+.resA tr {
+    margin: 1px 1px
 }
 
 .resA a {
     display: inline-block;
-    margin-top: 15px;
     padding: 10px;
     width: 300px;
     border: solid 3px currentColor;
@@ -340,28 +452,63 @@ body {
 }
 
 /* 結果表示画面B _graph */
-.resB .container {
-    margin-top: 60px;
-    padding: 30px 10px;
-    align-items: center;
+.resB {
+    display: flex;
+    align-items: start;
     justify-content: center;
+    height: 100vh;
+    min-height: 450px;
+    width: 100vw;
+    min-width: 400px;
+    color: #000;
+    color: var(--text-dark-color);
     text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
 
-.resB h1 {
-    margin-top: 0;
-    margin-bottom: 15;
+.resB .con {
+    margin-top: 60px;
+    max-width: 900px;
+    max-width: var(--middle-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.resB h2 {
+    margin: 30px 0 0;
     font-family: 'Big Shoulders Stencil Display', cursive;
-    font-size: 70px;
+    font-size: 60px;
     letter-spacing: 0.1em;
     margin-left: 0.1em;
 }
 
+.resB h5 {
+    margin: 0 0 15px;
+    font-size: 20px;
+}
+
+.resB .symbol {
+    margin: 20px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 28px;
+    opacity: 0.5;
+}
+
+.resB p {
+    margin: 0 0 30px;
+}
+
 .resB table {
-    margin-left: auto;
-    margin-right: auto;
+    margin:0 10px 15px;
+    font-size: 12px;
+}
+
+.resB tr {
+    margin: 1px 1px
 }
 
 .resB .tabA td {
@@ -375,7 +522,6 @@ body {
 
 .resB a {
     display: inline-block;
-    margin-top: 15px;
     padding: 10px;
     width: 300px;
     border: solid 3px currentColor;
@@ -398,6 +544,75 @@ body {
     );
 }
 
+/* ログイン画面 */
+.loginA {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    height: 100vh;
+    min-height: 450px;
+    width: 100vw;
+    min-width: 400px;
+    color: #000;
+    color: var(--text-dark-color);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loginA .container {
+    margin-top: 60px;
+    max-width: 900px;
+    max-width: var(--middle-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loginA h2 {
+    margin: 30px 0 0;
+    font-family: 'Big Shoulders Stencil Display', cursive;
+    font-size: 60px;
+    letter-spacing: 0.1em;
+    margin-left: 0.1em;
+}
+
+.loginA .symbol {
+    margin: 20px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 28px;
+    opacity: 0.5;
+}
+
+.loginA form {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.loginA .button {
+    display: inline-block;
+    padding: 10px 50px;
+    border: solid 3px currentColor;
+    border-radius: 6px;
+    background-color: #E68E9F;
+    background-color: var(--accent-color);
+    color: #fff;
+    color: var(--text-bright-color);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.loginA .button:hover {
+    text-decoration: none;
+    color: #fff;
+    color: var(--text-bright-color);
+    background-image: linear-gradient(
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0.2)
+    );
+}
 
 /* ヘッダー */
 header {

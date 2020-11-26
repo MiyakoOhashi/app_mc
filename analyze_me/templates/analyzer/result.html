@@ -3,32 +3,31 @@
 {% block body %}
 
 <section class="resA">
-    <div class="container">
-        <h1>{{ ana.name }}</h1>
-        <br>
-        <h5>
-            <span class="far fa-gem"></span>
-             判定
-            <span class="far fa-gem"></span>
-        </h5>
+    <div class="con">
+
+        <h2>{{ ana.name }}</h2>
+        <p class="symbol"><span class="far fa-gem"></span></p>
+
+        <h5>判定</h5>
         <p>{{ ana.judge0 }}</p>
-        <br>
+
         <table border="1">
             <tr>
                 <th>No.</th>
                 <th>質問</th>
                 <th>回答</th>
             </tr>
-        {% for que in ana.q_range %}
+            {% for que in ana.q_range %}
             <tr>
                 <td>{{ que+1 }}</td>
                 <td>{{ ana.queries[que] }}</td>
                 <td>{{ ana.answers[que] }}</td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </table>
-        <br>
+
         <a href="{{ url_for('analyzes.analyzer_list') }}">リストに戻る</a>
+
     </div>
 </section>
 
