@@ -3,9 +3,9 @@
 from flask import request, redirect, url_for, \
     render_template, flash, session
 from flask import Blueprint, g
+#from flask_login import login_required
 #from analyze_me import db
-#from analyze_me.models.entries import Entry
-from analyze_me.views.views import login_required
+#from analyze_me.models.user import User
 
 #ブループリント設定
 analyzes = Blueprint('analyzes', __name__)

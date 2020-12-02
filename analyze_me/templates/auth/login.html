@@ -8,22 +8,36 @@
             <h2>LOGIN</h2>
             <p class="symbol"><span class="far fa-gem"></span></p>
 
-            <form action="{{ url_for('login') }}" method=post>
-                <!-- ユーザ名インプット -->
+            <form action="{{ url_for('auth.login') }}" method=post>
+                <!-- ユーザIDインプット -->
                 <div class="form-group">
-                    <label for="InputTitle">User Name</label>
-                    <input type="text" class="form-control" id="InputTitle" name=username>
+                    <label for="InputUserID">User ID</label>
+                    <input type="text" class="form-control" id="InputUserID" name=user_id>
                 </div>
                 <!-- パスワードインプット -->
                 <div class="form-group">
+                    <p>
                     <label for="InputPassword">Password</label>
                     <input type="password" class="form-control" id="InputPassword" name=password>
+                    </p>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name=remenber>
+                        Remenber me
+                    </label>
                 </div>
                 <!-- ログインボタン -->
                 <button type="submit" class="button">LOGIN</button>
                 <!--button-- type="submit" class="btn btn-primary">LOGIN</button-->
+                <!-- サインアップ画面に移動 -->
             </form>
-
+            <p class="p1">未登録の方は
+                <span>
+                    <a href="{{ url_for('auth.signup') }}">ユーザー登録</a>
+                </span>
+                してください
+            </p>
         </div>
     </section>
 

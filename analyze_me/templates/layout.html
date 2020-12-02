@@ -34,7 +34,7 @@
     <header>
         <nav class="conH">
             <div class="conH-small">
-                <a class="headA" href="{{ url_for('index') }}">ANALyZE ME</a>
+                <a class="headA" href="{{ url_for('views.index') }}">ANALyZE ME</a>
 
                 <button class="headC" type="button">
                     <span class="fas fa-bars" title="MENU"></span>
@@ -46,20 +46,20 @@
                         <a href="{{ url_for('analyzes.analyzer_list') }}">リスト</a>
                     </li>
 
-                    {% if not session.logged_in %}
+                    {% if not current_user.is_authenticated %}
 
                     <li>
-                        <a href="{{ url_for('login') }}">LOGIN</a>
+                        <a href="{{ url_for('auth.login') }}">LOGIN</a>
                     </li>
 
                     {% else %}
 
                     <li>
-                        <a href="{{ url_for('show_entries') }}"><span>(current)</span>過去ログ</a>
+                        <a href="{{ url_for('views.show_log') }}"><span>(current)</span>過去ログ</a>
                     </li>
 
                     <li>
-                        <a href="{{ url_for('logout') }}">LOGOUT</a>
+                        <a href="{{ url_for('auth.logout') }}">LOGOUT</a>
                     </li>
 
                     {% endif %}

@@ -1,0 +1,28 @@
+<!-- analyze_me/templates/confirm.html  2020/11/27  M.O-->
+{% extends "layout.html" %}
+{% block body %}
+
+    <section class="loginA">
+        <div class="container">
+
+            <h2>CONFIRM</h2>
+            <p class="symbol"><span class="far fa-gem"></span></p>
+
+                <!-- ユーザID -->
+                <div class="conf">
+                    <p>User ID: {{ userid }}</p>
+                </div>
+                <!-- ユーザ名 -->
+                <div class="conf">
+                    <p>User Name: {{ username }}</p>
+                </div>
+                <!-- パスワード -->
+                <div class="conf">
+                    <p>Password: {{ password }}</p>
+                </div>
+                <!-- 確認ボタン -->
+
+        </div>
+    </section>
+
+{% endblock %}

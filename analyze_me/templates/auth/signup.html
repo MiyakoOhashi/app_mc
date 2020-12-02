@@ -1,0 +1,40 @@
+<!-- analyze_me/templates/signup.html  2020/11/27  M.O-->
+{% extends "layout.html" %}
+{% block body %}
+
+    <section class="loginA">
+        <div class="container">
+
+            <h2>SIGN UP</h2>
+            <p class="symbol"><span class="far fa-gem"></span></p>
+
+            <form action="{{ url_for('auth.signup') }}" method=post>
+                <!-- ユーザIDインプット -->
+                <div class="form-group">
+                    <label for="InputUserID">User ID</label>
+                    <input type="text" class="form-control" id="InputUserID" name=user_id >
+                </div>
+                <!-- ユーザ名インプット -->
+                <div class="form-group">
+                    <label for="InputName">User Name</label>
+                    <input type="text" class="form-control" id="InputName" name=username >
+                </div>
+                <!-- パスワードインプット -->
+                <div class="form-group">
+                    <label for="InputPassword">Password</label>
+                    <input type="password" class="form-control" id="InputPassword" name=password >
+                </div>
+                <!-- パスワード（確認）インプット -->
+                <!--div class="form-group">
+                    <label for="InputPassword0">Password (Confirm)</label>
+                    <input type="password" class="form-control" id="InputPassword0" name=password0>
+                </div-->
+                <!-- 確認ボタン -->
+                <button type="submit" class="button">SIGN UP</button>
+                <!--button-- type="submit" class="btn btn-primary">確認</button-->
+            </form>
+
+        </div>
+    </section>
+
+{% endblock %}
