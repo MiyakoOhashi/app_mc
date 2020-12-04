@@ -33,8 +33,8 @@ def login(data: {}) -> User:
     try:
         user_id = data.get('user_id')
         password = data.get('password')
-        #remenber = True if data.get('remenber') else False
-        print("ID: {}, PASS: {}".format(user_id, password))
+        remember = True if data.get('remember') else False
+        print("ID: {}, PASS: {}, REM: {}".format(user_id, password, remember))
         if not user_id or not password:
             user = 'empty'
             return user
@@ -44,7 +44,7 @@ def login(data: {}) -> User:
             raise SQLAlchemyError
 
         #ログイン維持
-        login_user(user)
+        login_user(user, remember=remember)
         return user
     except SQLAlchemyError:
         raise SQLAlchemyError
