@@ -9,15 +9,18 @@ from analyze_me.models.user import User
 def signup(data: {}) -> User:
     try:
         user_id = data.get('user_id')
-        name = data.get('name')
+        username = data.get('username')
         password = data.get('password')
+        print("ID: {}, NAME: {}, PASS: {}".format(user_id, username, password))
+        if not user_id or not username or not password:
+            user = 'empty'
+            return user
         #ユーザ登録の有無を確認
         user = User.query.filter_by(user_id=user_id).first()
-        print(user)
         if user:
             return user
         #ユーザ無の場合新規作成
-        new_user = User.from_args(user_id, name, password)
+        new_user = User.from_args(user_id, username, password)
         #データベース登録
         db.session.add(new_user)
         db.session.commit()
@@ -28,17 +31,20 @@ def signup(data: {}) -> User:
 #ログインサービス
 def login(data: {}) -> User:
     try:
-        print("id:{}, name:{}, rem:{}".format(data.get('user_id'), data.get('password'),data.get('remenber')))
         user_id = data.get('user_id')
         password = data.get('password')
-        remenber = True if data.get('remenber') else False
+        #remenber = True if data.get('remenber') else False
+        print("ID: {}, PASS: {}".format(user_id, password))
+        if not user_id or not password:
+            user = 'empty'
+            return user
         user = User.query.filter_by(user_id=user_id).first()
         #ユーザとパスワード確認
         if not user and not user.check_password(user.password, password):
             raise SQLAlchemyError
 
         #ログイン維持
-        login_user(user, remenber=remenber)
+        login_user(user)
         return user
     except SQLAlchemyError:
         raise SQLAlchemyError

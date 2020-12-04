@@ -3,7 +3,6 @@
 from flask import request, redirect, url_for, \
     render_template, flash, session, Blueprint
 from flask_login import login_required
-from functools import wraps
 from analyze_me import db
 from analyze_me.models.user import User
 

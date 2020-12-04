@@ -55,7 +55,7 @@
                     {% else %}
 
                     <li>
-                        <a href="{{ url_for('views.show_log') }}"><span>(current)</span>過去ログ</a>
+                        <a href="{{ url_for('views.show_logs') }}"><span>{{ current_user.name }}さんの</span>過去ログ</a>
                     </li>
 
                     <li>

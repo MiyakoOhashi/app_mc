@@ -2,7 +2,7 @@
 #ログイン関連用viewファイル
 from flask import request, redirect, url_for, \
     render_template, flash, session, Blueprint
-from functools import wraps
+#from functools import wraps
 from analyze_me.services import auth_service
 
 auth = Blueprint('auth', __name__)
@@ -13,7 +13,10 @@ def signup():
     error = None
     if request.method == 'POST':            #ログイン画面入力時
         user = auth_service.signup(request.form)
-        if user:
+        if user == 'empty':
+            flash('未記入の項目があります')
+            return render_template('auth/signup.html')
+        elif user:
             flash('このユーザIDはすでに登録されています')
             return redirect(url_for('auth.login'))
         else:
@@ -27,6 +30,9 @@ def login():
     error = None
     if request.method == 'POST':            #ログイン画面入力時
         user = auth_service.login(request.form)
+        if user == 'empty':
+            flash('未記入の項目があります')
+            return render_template('auth/login.html')
         if not user:
             flash('ユーザIDもしくはパスワードに誤りがあります')
             return render_template('auth/login.html')
