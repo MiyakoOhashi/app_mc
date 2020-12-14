@@ -77,9 +77,9 @@ class POMS:                           #フュージョンチェックメイン�
                         "罪悪感がある",
                         "あれこれ心配だ"
                         ]
-        self.q_len = len(self.queries)
-        self.q_range = range(self.q_len)
-        self.que = 0
+        #self.q_len = len(self.queries)
+        #self.q_range = range(self.q_len)
+        #self.que = 0
         #回答選択肢リスト
         self.options = ["まったくなかった",
                         "少しあった",
@@ -87,17 +87,17 @@ class POMS:                           #フュージョンチェックメイン�
                         "かなりあった",
                         "非常に多くあった"
                         ]
-        self.o_range = range(len(self.options))
+        #self.o_range = range(len(self.options))
         #回答格納リスト
         self.answers = []
         #回答合計値
         self.a_sum = [ 0, 0, 0, 0, 0, 0 ]
-        self.f_range = range(len(self.a_sum))
+        #self.f_range = range(len(self.a_sum))
         #self.a_sum = {"fa":0, "d":0, "ah":0, "v":0, "f":0, "c":0}
         #因子設定
         self.fac = ["fa", "d", "ah", "v", "f", "c"]
 
-    def cal(self, ans):         #判定結果計算
+    def cal(self, ans, que):         #判定結果計算
         #各因子に関する項目
         fa = [14, 18, 23, 33, 36, 49, 53, 58, 65]
         d = [2, 7, 12, 16, 20, 24, 29, 37, 42, 47, 48, 51, 55, 59, 64]
@@ -108,24 +108,24 @@ class POMS:                           #フュージョンチェックメイン�
 
         self.answers.append(self.options[ans])
 
-        if self.que+1 == 36 or self.que+1 == 45:
+        if que+1 == 36 or que+1 == 45:
             ans = 4 - ans
 
-        if self.que+1 in fa:
+        if que+1 in fa:
             self.a_sum[0] += ans
-        elif self.que+1 in d:
+        elif que+1 in d:
             self.a_sum[1] += ans
-        elif self.que+1 in ah:
+        elif que+1 in ah:
             self.a_sum[2] += ans
-        elif self.que+1 in v:
+        elif que+1 in v:
             self.a_sum[3] += ans
-        elif self.que+1 in f:
+        elif que+1 in f:
             self.a_sum[4] += ans
-        elif self.que+1 in c:
+        elif que+1 in c:
             self.a_sum[5] += ans
 
-        self.que += 1
-        print("ただいまの質問：{}".format(self.que))
+        #self.que += 1
+        print("ただいまの質問：{}".format(que))
         print("回答：{}".format(self.answers))
         print("合計値：{}".format(self.a_sum))
 

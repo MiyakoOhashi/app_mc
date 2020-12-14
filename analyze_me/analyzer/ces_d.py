@@ -32,28 +32,28 @@ class CES_D:                           #CES-Dメインプログラム
                         "皆が自分を嫌っていると感じる",
                         "仕事が手に付かない"
                         ]
-        self.q_len = len(self.queries)
-        self.q_range = range(self.q_len)
-        self.que = 0
+        #self.q_len = len(self.queries)
+        #self.q_range = range(self.q_len)
+        #self.que = 0
         #回答選択肢リスト
         self.options = ["ない",
                         "１ー２日",
                         "３ー４日",
                         "５日以上"
                         ]
-        self.o_range = range(len(self.options))
+        #self.o_range = range(len(self.options))
         #回答格納リスト
         self.answers = []
         #回答合計値
         self.a_sum = 0
 
-    def cal(self, ans):         #判定結果計算
+    def cal(self, ans, que):         #判定結果計算
         self.answers.append(self.options[ans])
-        if self.que == 3 or self.que == 7 or self.que == 15:
+        if que == 3 or que == 7 or que == 15:
             ans = 3 - ans
         self.a_sum += ans
-        self.que += 1
-        print("ただいまの質問：{}".format(self.que))
+        #self.que += 1
+        print("ただいまの質問：{}".format(que))
         print("回答：{}".format(self.answers))
         print("合計値：{}".format(self.a_sum))
 

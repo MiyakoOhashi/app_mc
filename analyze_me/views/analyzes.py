@@ -10,10 +10,12 @@ from flask import Blueprint, g
 #ブループリント設定
 analyzes = Blueprint('analyzes', __name__)
 
+"""
 #グローバル関数設定
 @analyzes.before_request
 def setting_analyzer():
     g.ana = None
+"""
 
 #アナライザリスト
 @analyzes.route('/list/')
@@ -21,14 +23,13 @@ def analyzer_list():
     return render_template('analyzer/list.html')
 
 #アナライザ選択
-@analyzes.route('/list/<id>')
-def analyzer_select(id):
-    if not id is None:
-        session['test_start'] = True
-        session['id'] = id
-        print("SESSION:{}".format(session['test_start']))
-        print("SESSION:{}".format(session['id']))
-        return redirect(url_for('examin.description', id=id))
+@analyzes.route('/list/<ex_id>')
+def analyzer_select(ex_id):
+    if id:
+        session['ex_id'] = ex_id
+        session['que'] = 0
+        print("SESSION[EX_ID]: {}, SESSION[QUE]: {}".format(session['ex_id'], session['que']))
+        return redirect(url_for('examin.description', ex_id=ex_id))
     return redirect(url_for('analyzer_list'))
 
 

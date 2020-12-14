@@ -19,9 +19,9 @@ class FU:                           #フュージョンチェックメインプ�
                         "自分の考えにかなり巻き込まれがちだ",
                         "動揺するような考えに執着しないほうが自分の役に立つと分かっていても、そうすることにとても苦労する"
                         ]
-        self.q_len = len(self.queries)
-        self.q_range = range(self.q_len)
-        self.que = 0
+        #self.q_len = len(self.queries)
+        #self.q_range = range(self.q_len)
+        #self.que = 0
         #回答選択肢リスト
         self.options = ["全く当てはまらない",
                         "極稀に当てはまる",
@@ -31,16 +31,16 @@ class FU:                           #フュージョンチェックメインプ�
                         "ほとんどいつも当てはまる",
                         "いつも当てはまる"
                         ]
-        self.o_range = range(len(self.options))
+        #self.o_range = range(len(self.options))
         #回答格納リスト
         self.answers = []
         #回答合計値
         self.a_sum = 0
 
-    def cal(self, ans):         #判定結果計算
+    def cal(self, ans, que):         #判定結果計算
         self.answers.append(self.options[ans])
         self.a_sum += ans
-        self.que += 1
+        #self.que += 1
         #print("ただいまの質問：{}".format(self.que))
         #print("回答：{}".format(self.answers))
         #print("合計値：{}".format(self.a_sum))

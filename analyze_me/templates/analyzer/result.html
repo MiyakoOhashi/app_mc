@@ -17,7 +17,7 @@
                 <th>質問</th>
                 <th>回答</th>
             </tr>
-            {% for que in ana.q_range %}
+            {% for que in range(0, ana.queries|length) %}
             <tr>
                 <td>{{ que+1 }}</td>
                 <td>{{ ana.queries[que] }}</td>

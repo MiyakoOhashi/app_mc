@@ -11,7 +11,7 @@
         <h5>結果</h5>
         <table class="tabA">
             <tr>
-                {% for f in ana.f_range %}
+                {% for f in range(0, ana.a_sum|length) %}
                     <td class="tdA">{{ ana.fac[f] }}</td>
                     <td>{{ ana.a_sum[f] }}</td>
                 {% endfor %}
@@ -24,7 +24,7 @@
                 <th>質問</th>
                 <th>回答</th>
             </tr>
-            {% for que in ana.q_range %}
+            {% for que in range(0, ana.queries|length) %}
             <tr>
                 <td>{{ que+1 }}</td>
                 <td>{{ ana.queries[que] }}</td>

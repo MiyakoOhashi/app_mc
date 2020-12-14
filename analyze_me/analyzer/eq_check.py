@@ -22,9 +22,9 @@ class EQ:                           #EQ（脱中心化）チェックメイン�
                         "私は、自分の身体の感覚全体を意識的に感じるようにしている",
                         "私は、より広い視野で物事を捉える"
                         ]
-        self.q_len = len(self.queries)
-        self.q_range = range(self.q_len)
-        self.que = 0
+        #self.q_len = len(self.queries)
+        #self.q_range = range(self.q_len)
+        #self.que = 0
         #回答選択肢リスト
         self.options = ["全く当てはまらない",
                         "いく分当てはまる",
@@ -32,17 +32,17 @@ class EQ:                           #EQ（脱中心化）チェックメイン�
                         "かなりよく当てはまる",
                         "非常によく当てはまる"
                         ]
-        self.o_range = range(len(self.options))
+        #self.o_range = range(len(self.options))
         #回答格納リスト
         self.answers = []
         #回答合計値
         self.a_sum = 0
 
-    def cal(self, ans):         #判定結果計算
+    def cal(self, ans, que):         #判定結果計算
         self.answers.append(self.options[ans])
         self.a_sum += ans
-        self.que += 1
-        print("ただいまの質問：{}".format(self.que))
+        #self.que += 1
+        print("ただいまの質問：{}".format(que))
         print("回答：{}".format(self.answers))
         print("合計値：{}".format(self.a_sum))
 

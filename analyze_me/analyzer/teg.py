@@ -65,25 +65,25 @@ class TEG:                           #フュージョンチェックメインプ
                         "人の役に立つように行動する",
                         "常に向上心を持つ"
                         ]
-        self.q_len = len(self.queries)
-        self.q_range = range(self.q_len)
-        self.que = 0
+        #self.q_len = len(self.queries)
+        #self.q_range = range(self.q_len)
+        #self.que = 0
         #回答選択肢リスト
         self.options = ["いいえ",
                         "どちらでもない",
                         "はい"
                         ]
-        self.o_range = range(len(self.options))
+        #self.o_range = range(len(self.options))
         #回答格納リスト
         self.answers = []
         #回答合計値
         self.a_sum = [ 0, 0, 0, 0, 0, 0 ]
-        self.f_range = range(len(self.a_sum))
+        #self.f_range = range(len(self.a_sum))
         #self.a_sum = {"cp":0, "np":0, "a":0, "fc":0, "ac":0, "l":0}
         #因子設定
         self.fac = ["cp", "np", "a", "fc", "ac", "l"]
 
-    def cal(self, ans):         #判定結果計算
+    def cal(self, ans, que):         #判定結果計算
         # 各因子に関する項目
         cp = [2, 14, 23, 24, 26, 29, 41, 50, 51, 53]
         np = [5, 8, 13, 21, 25, 32, 35, 40, 48, 52]
@@ -94,24 +94,24 @@ class TEG:                           #フュージョンチェックメインプ
 
         self.answers.append(self.options[ans])
 
-        if self.que+1 in cp:
+        if que+1 in cp:
             self.a_sum[0] += ans
-        elif self.que+1 in np:
+        elif que+1 in np:
             self.a_sum[1] += ans
-        elif self.que+1 in a:
+        elif que+1 in a:
             self.a_sum[2] += ans
-        elif self.que+1 in fc:
+        elif que+1 in fc:
             self.a_sum[3] += ans
-        elif self.que+1 in ac:
+        elif que+1 in ac:
             self.a_sum[4] += ans
-        elif self.que+1 in l:
+        elif que+1 in l:
             self.a_sum[5] += ans
 
-        self.que += 1
-        print("ただいまの質問：{}".format(self.que))
+        #self.que += 1
+        print("ただいまの質問：{}".format(que))
         print("回答：{}".format(self.answers))
         print("合計値：{}".format(self.a_sum))
-        print("因子数{}".format(self.f_range))
+        #print("因子数{}".format(self.f_range))
 
     def judge(self, a_sum):     #テスト結果判定（フュージョン傾向）
         pass

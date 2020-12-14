@@ -1,7 +1,6 @@
 #analyze_me/models/user.py       2020/11/30   M.O
 from analyze_me import db
 from datetime import datetime
-#from sqlalchemy.dialects import postgresql as pg
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
