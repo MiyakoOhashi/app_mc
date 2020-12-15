@@ -13,7 +13,7 @@
             <tr>
                 {% for f in range(0, ana.a_sum|length) %}
                     <td class="tdA">{{ ana.fac[f] }}</td>
-                    <td>{{ ana.a_sum[f] }}</td>
+                    <td>{{ session.a_sum[f] }}</td>
                 {% endfor %}
             </tr>
         </table>
@@ -28,7 +28,7 @@
             <tr>
                 <td>{{ que+1 }}</td>
                 <td>{{ ana.queries[que] }}</td>
-                <td>{{ ana.answers[que] }}</td>
+                <td>{{ session.answers[que] }}</td>
             </tr>
             {% endfor %}
         </table>

@@ -1,4 +1,5 @@
 #analyze_me/models/analyzer.py       2020/12/04   M.O
+"""
 from analyze_me import db
 from datetime import datetime
 from sqlalchemy.dialects import postgresql as pg
@@ -35,7 +36,7 @@ class Analyzer(db.Model):                    #フュージョンチェックメ�
             examin = TEG()
 
         instance = cls()
-        instance.ex_id = examin.id
+        instance.ex_id = ex_id
         instance.name= examin.name
         instance.sub = examin.sub
         instance.desc = examin.desc
@@ -46,15 +47,16 @@ class Analyzer(db.Model):                    #フュージョンチェックメ�
         print(instance)
         return instance
 
-    def cal(self, ans):         #判定結果計算
-        self.answers.append(self.options[ans])
-        self.a_sum += ans
-        self.que += 1
+    def calcurate(self, ans ,ses):         #判定結果計算
+        return self.cal(self, ans, ses)
+        #self.answers.append(self.options[ans])
+        #self.a_sum += ans
+        #self.que += 1
         #print("ただいまの質問：{}".format(self.que))
         #print("回答：{}".format(self.answers))
         #print("合計値：{}".format(self.a_sum))
 
-    def judge(self, a_sum):     #テスト結果判定（フュージョン傾向）
+    def judgement(self, a_sum):     #テスト結果判定（フュージョン傾向）
         if a_sum > 27:
             self.judge0 = "思考と現実を混同し、考え込みやすい傾向があります"
         elif a_sum == 27:
@@ -62,3 +64,4 @@ class Analyzer(db.Model):                    #フュージョンチェックメ�
         else:
             self.judge0 = "思考と現実を混同しやすい傾向は薄いです"
         #print("判定：{}".format(self.judge0))
+"""

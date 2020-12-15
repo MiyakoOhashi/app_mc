@@ -13,12 +13,12 @@ class FU_result(db.Model):                    #フュージョンチェックメ
     created_at = db.Column(db.DateTime)
 
     @classmethod
-    def from_args(cls, user_id:str):
+    def from_args(cls, user_id:str, answers:[], a_sum:int, jadge:str):
         instance = cls()
         instance.user_id = user_id
-        instance.answers = []
-        instance.a_sum = 0
-        instance.jadge = None
+        instance.answers = answers
+        instance.a_sum = a_sum
+        instance.jadge = jadge
         instance.created_at = datetime.utcnow()
         print(instance)
         return instance

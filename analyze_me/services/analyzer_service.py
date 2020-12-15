@@ -2,23 +2,23 @@
 #ログイン関連データ処理ファイル
 from sqlalchemy.exc import SQLAlchemyError
 from analyze_me import db
-from analyze_me.models.analyzer import Analyzer
+from analyze_me.models.results import FU_result
 
-#アナライザ生成サービス
-def create_ana(ex_id, user_id) -> Analyzer:
+#データ格納サービス
+def store_data(user_id, ses) :
     try:
-        #ユーザ登録の有無を確認
-        ana = Analyzer.query.filter_by(ex_id=ex_id, user_id=user_id).first()
-        if ana:
-            return ana
-        #ユーザ無の場合新規作成
-        new_ana = Analyzer.from_args(ex_id. user_id)
-        #データベース登録
-        db.session.add(new_ana)
-        db.session.commit()
+        ex_id = ses['ex_id']
+        answers = ses['answers']
+        a_sum = ses['a_sum']
+        judge = ses['judge']
 
-        ana = Analyzer.query.get()
-        return ana
+        if ex_id == 'fu':
+            new_res = FU_result.from_args(user_id, answers, a_sum, judge)
+        #データベース登録
+        db.session.add(new_res)
+        db.session.commit()
+        return new_res
+
     except SQLAlchemyError:
         raise SQLAlchemyError
 

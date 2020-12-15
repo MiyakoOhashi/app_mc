@@ -34,23 +34,29 @@ class EQ:                           #EQ（脱中心化）チェックメイン�
                         ]
         #self.o_range = range(len(self.options))
         #回答格納リスト
-        self.answers = []
+        #self.answers = []
         #回答合計値
-        self.a_sum = 0
+        #self.a_sum = 0
 
-    def cal(self, ans, que):         #判定結果計算
-        self.answers.append(self.options[ans])
-        self.a_sum += ans
+    def cal(self, ans, ses):         #判定結果計算
+        #self.answers.append(self.options[ans])
+        #self.a_sum += ans
+        ses['answers'].append(self.options[ans])
+        ses['a_sum'] += ans
         #self.que += 1
-        print("ただいまの質問：{}".format(que))
-        print("回答：{}".format(self.answers))
-        print("合計値：{}".format(self.a_sum))
+        print("ただいまの質問：{}".format(ses['que']))
+        #print("回答：{}".format(self.answers))
+        #print("合計値：{}".format(self.a_sum))
+        print("ANSWER：{}".format(ses['answers']))
+        print("A_SUM: {}".format(ses['a_sum']))
 
-    def judge(self, a_sum):     #テスト結果判定（脱中心化傾向）
+
+    def judge(self, ses):     #テスト結果判定（脱中心化傾向）
+        a_sum = ses['a_sum']
         if a_sum >= 25:
-            self.judge0 = "思考と距離を置き、思考に巻き込まれずに判断している傾向：高い"
+            ses['judge'] = "思考と距離を置き、思考に巻き込まれずに判断している傾向：高い"
         else:
-            self.judge0 = "思考と距離を置き、思考に巻き込まれずに判断している傾向：低い"
-        print("判定：{}".format(self.judge0))
+            ses['judge']  = "思考と距離を置き、思考に巻き込まれずに判断している傾向：低い"
+        print("判定：{}".format(ses['judge']))
 
 

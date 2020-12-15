@@ -33,26 +33,31 @@ class FU:                           #フュージョンチェックメインプ�
                         ]
         #self.o_range = range(len(self.options))
         #回答格納リスト
-        self.answers = []
+        #self.answers = []
         #回答合計値
-        self.a_sum = 0
+        #self.a_sum = 0
 
-    def cal(self, ans, que):         #判定結果計算
-        self.answers.append(self.options[ans])
-        self.a_sum += ans
+    def cal(self, ans, ses):         #判定結果計算
+        #self.answers.append(self.options[ans])
+        #self.a_sum += ans
+        ses['answers'].append(self.options[ans])
+        ses['a_sum'] += ans
         #self.que += 1
-        #print("ただいまの質問：{}".format(self.que))
+        print("ただいまの質問：{}".format(ses['que']))
         #print("回答：{}".format(self.answers))
         #print("合計値：{}".format(self.a_sum))
+        print("ANSWER：{}".format(ses['answers']))
+        print("A_SUM: {}".format(ses['a_sum']))
 
-    def judge(self, a_sum):     #テスト結果判定（フュージョン傾向）
+    def judge(self, ses):     #テスト結果判定（フュージョン傾向）
+        a_sum = ses['a_sum']
         if a_sum > 27:
-            self.judge0 = "思考と現実を混同し、考え込みやすい傾向があります"
+            ses['judge'] = "思考と現実を混同し、考え込みやすい傾向があります"
         elif a_sum == 27:
-            self.judge0 = "一般平均値です"
+            ses['judge'] = "一般平均値です"
         else:
-            self.judge0 = "思考と現実を混同しやすい傾向は薄いです"
-        #print("判定：{}".format(self.judge0))
+            ses['judge'] = "思考と現実を混同しやすい傾向は薄いです"
+        print("判定：{}".format(ses['judge']))
 
 
 

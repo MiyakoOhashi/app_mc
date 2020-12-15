@@ -14,17 +14,34 @@ from analyze_me.analyzer.poms import POMS
 from analyze_me.analyzer.teg import TEG
 from analyze_me.views.analyzes import analyzes
 #from analyze_me.services import analyzer_service
-
+"""
 #グローバル変数（各テスト）設定
 fu = FU()
 eq = EQ()
 ces = CES_D()
 pom = POMS()
 teg = TEG()
-
+"""
 #ブループリント設定
 examin = Blueprint('examin', __name__)
 
+#グローバル関数設定
+@examin.before_request
+def setting_analyzer():
+    ex_id = session['ex_id']
+    if ex_id == "fu":
+        g.ana = FU()
+    elif ex_id == "eq":
+        g.ana = EQ()
+    elif ex_id == 'ces':
+        g.ana = CES_D()
+    elif ex_id == 'pom':
+        g.ana = POMS()
+    elif ex_id == 'teg':
+        g.ana = TEG()
+    print("EX_ID:{}".format(ex_id))
+
+"""
 #インスタンスセット
 @examin.url_value_preprocessor
 def add_analyzer(endpoint, values):
@@ -46,6 +63,7 @@ def add_analyzer(endpoint, values):
         elif ex_id == 'teg':
             global teg
             values['ana'] = teg
+"""
 
 #説明
 """
@@ -59,35 +77,36 @@ def description(ex_id):
                             ex_id=ex_id, ana=ana)
 """
 @examin.route('/description/<ex_id>')
-def description(ex_id, ana):
+def description(ex_id):
     return render_template('analyzer/description.html',\
-                            ex_id=ex_id, ana=ana)
+                            ex_id=ex_id, ana=g.ana)
 
 
 
 #結果表
 @examin.route('/result/<ex_id>', methods=['GET'])
-def result(ex_id, ana):
+def result(ex_id):
     if ex_id == 'pom' or ex_id == 'teg':
         return render_template('analyzer/result_graph.html', \
-                               ex_id=ex_id, ana=ana)
+                               ex_id=ex_id, ana=g.ana)
     else:
         return render_template('analyzer/result.html', \
-                                ex_id=ex_id, ana=ana)
+                                ex_id=ex_id, ana=g.ana)
 
 #テスト
 @examin.route('/analyzer/<ex_id>', methods=['GET', 'POST'])
-def analyzer(ex_id, ana):
+def analyzer(ex_id):
     if request.method == 'POST':
         try:
             ans = request.form.get('answer')
-            ana.cal(int(ans), session['que'])
+            g.ana.cal(int(ans), session)
             session['que'] += 1
             print("SESSION[QUE]: {}".format(session['que']))
         except TypeError:
             flash('回答が選択されていません。')
-        if session['que'] >= len(ana.queries):
-            ana.judge(ana.a_sum)
+        if session['que'] >= len(g.ana.queries):
+            #ana.judge(ana.a_sum)
+            g.ana.judge(session)
             return redirect(url_for('examin.result', ex_id=ex_id))
     return render_template('analyzer/query.html',\
-                                ex_id=ex_id, ana=ana, que=session['que'])
+                                ex_id=ex_id, ana=g.ana, que=session['que'])
