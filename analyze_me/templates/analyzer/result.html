@@ -9,7 +9,7 @@
         <p class="symbol"><span class="far fa-gem"></span></p>
 
         <h5>判定</h5>
-        <p>{{ session.judge }}</p>
+        <p>{{ result.judge }}</p>
 
         <table border="1">
             <tr>
@@ -21,7 +21,7 @@
             <tr>
                 <td>{{ que+1 }}</td>
                 <td>{{ ana.queries[que] }}</td>
-                <td>{{ session.answers[que] }}</td>
+                <td>{{ result.answers[que] }}</td>
             </tr>
             {% endfor %}
         </table>

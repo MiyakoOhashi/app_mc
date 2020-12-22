@@ -5,6 +5,7 @@ from flask import request, redirect, url_for, \
 from flask_login import login_required
 from analyze_me import db
 from analyze_me.models.user import User
+from analyze_me.services import analyzer_service
 
 #ブループリント設定
 views = Blueprint('views', __name__)
@@ -18,6 +19,7 @@ def index():
 @views.route('/log')
 @login_required
 def show_logs():
+    #fu_results = analyzer_service.find_all('fu')
     return render_template('logs/log.html')
 
 #404エラー時処理

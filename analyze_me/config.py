@@ -9,6 +9,6 @@ SECRET_KEY = 'secret_key'
 
 #デバッグ設定
 DEBUG = True
-USERID = 'john'
+#USERID = 'john'
 #USERNAME = 'john'
-PASSWORD = 'due123'
+#PASSWORD = 'due123'

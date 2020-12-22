@@ -3,15 +3,18 @@ from analyze_me import db
 from datetime import datetime
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy.orm import relationship
 
 #個人情報エントリ
 class User(UserMixin, db.Model):
-    __tablename__ = 'user_data'
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.String(50), unique=True)
     name = db.Column(db.String(30))
     password = db.Column(db.String(20), unique=True)
     created_at = db.Column(db.DateTime)
+
+    fu_results = relationship('FU_results')
 
     @classmethod
     def from_args(cls, user_id:str, name:str, password:str):

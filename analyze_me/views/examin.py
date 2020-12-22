@@ -13,7 +13,7 @@ from analyze_me.analyzer.ces_d import CES_D
 from analyze_me.analyzer.poms import POMS
 from analyze_me.analyzer.teg import TEG
 from analyze_me.views.analyzes import analyzes
-#from analyze_me.services import analyzer_service
+from analyze_me.services import analyzer_service
 """
 #グローバル変数（各テスト）設定
 fu = FU()
@@ -84,14 +84,15 @@ def description(ex_id):
 
 
 #結果表
-@examin.route('/result/<ex_id>', methods=['GET'])
-def result(ex_id):
+@examin.route('/result/<ex_id>/<result_id>', methods=['GET'])
+def result(ex_id, result_id):
+    result = analyzer_service.find_one(ex_id, result_id)
     if ex_id == 'pom' or ex_id == 'teg':
         return render_template('analyzer/result_graph.html', \
-                               ex_id=ex_id, ana=g.ana)
+                               ex_id=ex_id, ana=g.ana, result=result)
     else:
         return render_template('analyzer/result.html', \
-                                ex_id=ex_id, ana=g.ana)
+                                ex_id=ex_id, ana=g.ana, result=result)
 
 #テスト
 @examin.route('/analyzer/<ex_id>', methods=['GET', 'POST'])
@@ -106,7 +107,10 @@ def analyzer(ex_id):
             flash('回答が選択されていません。')
         if session['que'] >= len(g.ana.queries):
             #ana.judge(ana.a_sum)
-            g.ana.judge(session)
-            return redirect(url_for('examin.result', ex_id=ex_id))
+            session['judge'] = g.ana.judge(session['a_sum'])
+            print('SESSION: {}'.format(session))
+            print('USER_ID: {}'.format(current_user.id))
+            result_id = analyzer_service.save(current_user.id, session)
+            return redirect(url_for('examin.result', ex_id=ex_id, result_id=result_id))
     return render_template('analyzer/query.html',\
-                                ex_id=ex_id, ana=g.ana, que=session['que'])
+                                ex_id=ex_id, ana=g.ana)

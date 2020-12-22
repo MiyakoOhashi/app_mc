@@ -8,8 +8,8 @@
         <h2>{{ ana.name }}</h2>
         <p class="symbol"><span class="far fa-gem"></span></p>
 
-        <h5>質問{{ que+1 }}</h5>
-        <p class="quest">{{ ana.queries[que] }}</p>
+        <h5>質問{{ session.que+1 }}</h5>
+        <p class="quest">{{ ana.queries[session.que] }}</p>
 
         <form action="{{ url_for('examin.analyzer', ex_id=ex_id ) }}" method="POST">
             {% for opt in range(0, ana.options|length) %}

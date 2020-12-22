@@ -37,7 +37,7 @@ def login():
             flash('ユーザIDもしくはパスワードに誤りがあります')
             return render_template('auth/login.html')
         else:
-            session['logged_in'] = True
+            #session['logged_in'] = True
             flash('ログインしました')
             return redirect(url_for('views.show_logs'))
     return render_template('auth/login.html')    #ログイン画面遷移時、入力エラー時
@@ -45,7 +45,7 @@ def login():
 #ログアウト
 @auth.route('/logout')
 def logout():
-    session.pop('logged_in', None)
+    #session.pop('logged_in', None)
     auth_service.logout()
     flash('ログアウトしました')
     return redirect(url_for('views.index'))
