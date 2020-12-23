@@ -1,0 +1,65 @@
+<!-- analyze_me/templates/logs/logs.html 2020/09/27  M.O-->
+{% extends "layout.html" %}
+{% block body %}
+
+<section class="logA">
+    <div class="con">
+        <h2>List of Logs</h2>
+        <p class="symbol"><span class="far fa-gem"></span></p>
+
+        <div>
+            <h5>FU_Check</h5>
+            <table border="1">
+                <tr>
+                    <th>実施日</th>
+                    <th>判定</th>
+                    <th>合計点</th>
+                </tr>
+
+                {% for fu_res in fu_results %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('examin.result', ex_id='fu', result_id=fu_res.id) }}">
+                            {{ fu_res.created_at }}
+                        </a>
+                    </td>
+                    <td>{{ fu_res.judge }}</td>
+                    <td>{{ fu_res.a_sum }}</td>
+                </tr>
+                {% else %}
+                    <p>結果がありません</p>
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div>
+            <h5>EQ_Check</h5>
+            <table border="1">
+                <tr>
+                    <th>実施日</th>
+                    <th>判定</th>
+                    <th>合計点</th>
+                </tr>
+
+                {% for eq_res in eq_results %}
+                <tr>
+                    <td>
+                    <a href="{{ url_for('examin.result', ex_id='eq', result_id=eq_res.id) }}">
+                        {{ eq_res.created_at }}
+                    </a>
+                    </td>
+                    <td>{{ eq_res.judge }}</td>
+                    <td>{{ eq_res.a_sum }}</td>
+                </tr>
+                {% else %}
+                    <p>結果がありません</p>
+                {% endfor %}
+
+            </table>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

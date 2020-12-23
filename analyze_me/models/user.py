@@ -15,6 +15,7 @@ class User(UserMixin, db.Model):
     created_at = db.Column(db.DateTime)
 
     fu_results = relationship('FU_results')
+    eq_results = relationship('EQ_results')
 
     @classmethod
     def from_args(cls, user_id:str, name:str, password:str):

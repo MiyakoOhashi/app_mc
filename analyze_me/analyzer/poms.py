@@ -77,9 +77,6 @@ class POMS:                           #フュージョンチェックメイン�
                         "罪悪感がある",
                         "あれこれ心配だ"
                         ]
-        #self.q_len = len(self.queries)
-        #self.q_range = range(self.q_len)
-        #self.que = 0
         #回答選択肢リスト
         self.options = ["まったくなかった",
                         "少しあった",
@@ -87,13 +84,6 @@ class POMS:                           #フュージョンチェックメイン�
                         "かなりあった",
                         "非常に多くあった"
                         ]
-        #self.o_range = range(len(self.options))
-        #回答格納リスト
-        #self.answers = []
-        #回答合計値
-        #self.a_sum = [ 0, 0, 0, 0, 0, 0 ]
-        #self.f_range = range(len(self.a_sum))
-        #self.a_sum = {"fa":0, "d":0, "ah":0, "v":0, "f":0, "c":0}
         #因子設定
         self.fac = ["fa", "d", "ah", "v", "f", "c"]
 
@@ -105,40 +95,29 @@ class POMS:                           #フュージョンチェックメイン�
         v = [4, 15, 19, 26, 39, 50, 54, 61]
         f = [9, 22, 27, 34, 44, 57, 62]
         c = [5, 10, 25, 32, 40, 45, 60]
-
-        #self.answers.append(self.options[ans])
+        #回答追加
         ses['answers'].append(self.options[ans])
-
+        #加算方法イレギュラーのもの（No.36, No.45）
         que = ses['que']
         if que+1 == 36 or que+1 == 45:
             ans = 4 - ans
-
+        #回答各因子への加算
         if que+1 in fa:
-            #self.a_sum[0] += ans
             ses['a_sum'][0] += ans
         elif que+1 in d:
-            #self.a_sum[1] += ans
             ses['a_sum'][1] += ans
         elif que+1 in ah:
-            #self.a_sum[2] += ans
             ses['a_sum'][2] += ans
         elif que+1 in v:
-            #self.a_sum[3] += ans
             ses['a_sum'][3] += ans
         elif que+1 in f:
-            #self.a_sum[4] += ans
             ses['a_sum'][4] += ans
         elif que+1 in c:
-            #self.a_sum[5] += ans
             ses['a_sum'][5] += ans
 
-        #self.que += 1
         print("ただいまの質問：{}".format(que))
-        #print("回答：{}".format(self.answers))
-        #print("合計値：{}".format(self.a_sum))
         print("ANSWER：{}".format(ses['answers']))
         print("A_SUM: {}".format(ses['a_sum']))
 
-    def judge(self, ses):     #テスト結果判定（フュージョン傾向）
+    def judge(self, a_sum):     #テスト結果判定（フュージョン傾向）
         pass
-        #print("判定：{}".format(self.judge0))

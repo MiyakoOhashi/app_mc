@@ -3,8 +3,6 @@
 from flask import request, redirect, url_for, \
     render_template, flash, session, Blueprint
 from flask_login import login_required
-from analyze_me import db
-from analyze_me.models.user import User
 from analyze_me.services import analyzer_service
 
 #ブループリント設定
@@ -16,11 +14,14 @@ def index():
     return render_template('index.html')
 
 #個人情報(過去log)ページ
-@views.route('/log')
+@views.route('/logs')
 @login_required
 def show_logs():
-    #fu_results = analyzer_service.find_all('fu')
-    return render_template('logs/log.html')
+    fu_results = analyzer_service.find_all('fu')
+    eq_results = analyzer_service.find_all('eq')
+    return render_template('logs/logs.html', \
+                           fu_results=fu_results, \
+                           eq_results=eq_results)
 
 #404エラー時処理
 @views.errorhandler(404)

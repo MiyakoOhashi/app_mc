@@ -19,7 +19,7 @@ login_manager.init_app(app)
 
 #DBインポート
 from analyze_me.models.user import User
-from analyze_me.models.results import FU_results
+from analyze_me.models.results import FU_results, EQ_results
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -41,4 +41,4 @@ app.register_blueprint(analyzes, url_prefix='/analyzes')
 from analyze_me.views.examin import examin
 app.register_blueprint(examin, url_prefix='/examin')
 
-from analyze_me.views import views
+#from analyze_me.views import views

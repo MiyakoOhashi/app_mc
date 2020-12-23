@@ -32,45 +32,33 @@ class CES_D:                           #CES-Dメインプログラム
                         "皆が自分を嫌っていると感じる",
                         "仕事が手に付かない"
                         ]
-        #self.q_len = len(self.queries)
-        #self.q_range = range(self.q_len)
-        #self.que = 0
         #回答選択肢リスト
         self.options = ["ない",
                         "１ー２日",
                         "３ー４日",
                         "５日以上"
                         ]
-        #self.o_range = range(len(self.options))
-        #回答格納リスト
-        #self.answers = []
-        #回答合計値
-        #self.a_sum = 0
 
     def cal(self, ans, ses):         #判定結果計算
-        #self.answers.append(self.options[ans])
+        #回答追加
         ses['answers'].append(self.options[ans])
-
+        # 加算方法イレギュラーのもの（No.3, No.7, No.15）
         que = ses['que']
         if que == 3 or que == 7 or que == 15:
             ans = 3 - ans
-        #self.a_sum += ans
+        #回答加算
         ses['a_sum'] += ans
-        #self.que += 1
+
         print("ただいまの質問：{}".format(que))
-        #print("回答：{}".format(self.answers))
-        #print("合計値：{}".format(self.a_sum))
         print("ANSWER：{}".format(ses['answers']))
         print("A_SUM: {}".format(ses['a_sum']))
 
-    def judge(self, ses):     #テスト結果判定（脱中心化傾向）
-        a_sum = ses['a_sum']
+    def judge(self, a_sum):     #テスト結果判定（脱中心化傾向）
         if a_sum >= 26:
-            ses['judge'] = "重度抑うつ"
+            return "重度抑うつ"
         elif a_sum >= 21:
-            ses['judge'] = "中度抑うつ"
+            return "中度抑うつ"
         elif a_sum >= 17:
-            ses['judge'] = "軽度抑うつ"
+            return "軽度抑うつ"
         else:
-            ses['judge'] = "正常"
-        print("判定：{}".format(ses['judge']))
+            return "正常"

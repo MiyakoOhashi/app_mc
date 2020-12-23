@@ -65,21 +65,11 @@ class TEG:                           #フュージョンチェックメインプ
                         "人の役に立つように行動する",
                         "常に向上心を持つ"
                         ]
-        #self.q_len = len(self.queries)
-        #self.q_range = range(self.q_len)
-        #self.que = 0
         #回答選択肢リスト
         self.options = ["いいえ",
                         "どちらでもない",
                         "はい"
                         ]
-        #self.o_range = range(len(self.options))
-        #回答格納リスト
-        #self.answers = []
-        #回答合計値
-        #self.a_sum = [ 0, 0, 0, 0, 0, 0 ]
-        #self.f_range = range(len(self.a_sum))
-        #self.a_sum = {"cp":0, "np":0, "a":0, "fc":0, "ac":0, "l":0}
         #因子設定
         self.fac = ["cp", "np", "a", "fc", "ac", "l"]
 
@@ -91,38 +81,26 @@ class TEG:                           #フュージョンチェックメインプ
         fc = [3, 10, 17, 18, 22, 30, 37, 44, 45, 49]
         ac = [1, 4, 7, 9, 19, 28, 31, 34, 46, 46]
         l = [20, 27, 47]
-
-        #self.answers.append(self.options[ans])
+        #回答追加
         ses['answers'].append(self.options[ans])
-
+        #回答各因子に追加
         que = ses['que']
         if que+1 in cp:
-            #self.a_sum[0] += ans
             ses['a_sum'][0] += ans
         elif que+1 in np:
-            #self.a_sum[1] += ans
             ses['a_sum'][1] += ans
         elif que+1 in a:
-            #self.a_sum[2] += ans
             ses['a_sum'][2] += ans
         elif que+1 in fc:
-            #self.a_sum[3] += ans
             ses['a_sum'][3] += ans
         elif que+1 in ac:
-            #self.a_sum[4] += ans
             ses['a_sum'][4] += ans
         elif que+1 in l:
-            #self.a_sum[5] += ans
             ses['a_sum'][5] += ans
 
-        #self.que += 1
         print("ただいまの質問：{}".format(que))
-        #print("回答：{}".format(self.answers))
-        #print("合計値：{}".format(self.a_sum))
         print("ANSWER：{}".format(ses['answers']))
         print("A_SUM: {}".format(ses['a_sum']))
-        #print("因子数{}".format(self.f_range))
 
-    def judge(self, ses):     #テスト結果判定（フュージョン傾向）
+    def judge(self, a_sum):     #テスト結果判定（フュージョン傾向）
         pass
-        #print("判定：{}".format(self.judge0))
