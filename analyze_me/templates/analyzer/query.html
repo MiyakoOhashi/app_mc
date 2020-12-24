@@ -11,7 +11,7 @@
         <h5>質問{{ session.que+1 }}</h5>
         <p class="quest">{{ ana.queries[session.que] }}</p>
 
-        <form action="{{ url_for('examin.analyzer', ex_id=ex_id ) }}" method="POST">
+        <form action="{{ url_for('analyzes.analyzer', ex_id=session.ex_id ) }}" method="POST">
             {% for opt in range(0, ana.options|length) %}
             <input class="radio" type="radio" name="answer" id={{ opt }} value={{ opt }} >
             <label class="label" for={{ opt }} >{{ ana.options[opt] }}</label>

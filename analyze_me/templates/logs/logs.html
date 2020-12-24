@@ -19,7 +19,7 @@
                 {% for fu_res in fu_results %}
                 <tr>
                     <td>
-                        <a href="{{ url_for('examin.result', ex_id='fu', result_id=fu_res.id) }}">
+                        <a href="{{ url_for('views.result', ex_id='fu', result_id=fu_res.id) }}">
                             {{ fu_res.created_at }}
                         </a>
                     </td>
@@ -45,7 +45,7 @@
                 {% for eq_res in eq_results %}
                 <tr>
                     <td>
-                    <a href="{{ url_for('examin.result', ex_id='eq', result_id=eq_res.id) }}">
+                    <a href="{{ url_for('views.result', ex_id='eq', result_id=eq_res.id) }}">
                         {{ eq_res.created_at }}
                     </a>
                     </td>

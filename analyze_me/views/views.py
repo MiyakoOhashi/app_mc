@@ -23,6 +23,20 @@ def show_logs():
                            fu_results=fu_results, \
                            eq_results=eq_results)
 
+
+#結果表示
+@views.route('/result/<ex_id>/<result_id>', methods=['GET'])
+@login_required
+def result(ex_id, result_id):
+    ana = analyzer_service.setting_analyzer(ex_id)
+    result = analyzer_service.find_one(ex_id, result_id)
+    if ex_id == 'pom' or ex_id == 'teg':
+        return render_template('logs/result_graph.html', \
+                               ex_id=ex_id, ana=ana, result=result)
+    else:
+        return render_template('logs/result.html', \
+                                ex_id=ex_id, ana=ana, result=result)
+
 #404エラー時処理
 @views.errorhandler(404)
 def non_existant_route(error):

@@ -20,7 +20,7 @@ def set_param(ex_id, ses):
     else:                                       #FU, EQ, CES-D
         ses['a_sum'] = 0
 
-#テストセッティング
+#アナライザ設定
 def setting_analyzer(ex_id):
     if not ex_id:
         raise Exception
@@ -99,12 +99,20 @@ def save(user_id, ses) :
             )
 
         """
-        #データベース追加
-        db.session.add(new_res)
         #データベース登録
+        db.session.add(new_res)
         db.session.commit()
+
+        #セッション情報削除
+        ses.pop('ex_id', None)
+        ses.pop('answers', None)
+        ses.pop('a_sum', None)
+        ses.pop('judge', None)
+        ses.pop('que', None)
+
         print("USER_ID: {}, ID: {}, ANSWERS: {}".format(new_res.user_id, new_res.id, new_res.answers))
         print("S_SUM: {}, JUDGE: {}, DATE: {}".format(new_res.a_sum, new_res.judge, new_res.created_at))
+        print(ses)
         return new_res.id
     except SQLAlchemyError:
         raise SQLAlchemyError

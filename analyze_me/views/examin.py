@@ -12,7 +12,7 @@ from flask_login import login_required, current_user
 from analyze_me.services import analyzer_service
 
 #ブループリント設定
-examin = Blueprint('examin', __name__)
+#examin = Blueprint('examin', __name__)
 
 """
 #グローバル関数設定
@@ -30,7 +30,7 @@ def setting_analyzer():
         g.ana = TEG()
     print("EX_ID:{}".format(session['ex_id']))
 """
-
+"""
 #説明
 @examin.route('/description/<ex_id>')
 def description(ex_id):
@@ -74,3 +74,4 @@ def analyzer(ex_id):
             return redirect(url_for('examin.result', ex_id=ex_id, result_id=result_id))
     return render_template('analyzer/query.html',\
                                 ex_id=ex_id, ana=ana)
+"""
