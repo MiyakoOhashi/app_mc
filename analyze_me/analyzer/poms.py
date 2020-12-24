@@ -1,6 +1,7 @@
 #analyze_me/analyzer/poms.py       2020/11/06   M.O
+from flask import session
 
-class POMS:                           #フュージョンチェックメインプログラム
+class POMS:                           #POMSメインプログラム
     def __init__(self):
         #テストID
         self.id = "pom"
@@ -87,7 +88,7 @@ class POMS:                           #フュージョンチェックメイン�
         #因子設定
         self.fac = ["fa", "d", "ah", "v", "f", "c"]
 
-    def cal(self, ans, ses):         #判定結果計算
+    def cal(self, ans):         #判定結果計算
         #各因子に関する項目
         fa = [14, 18, 23, 33, 36, 49, 53, 58, 65]
         d = [2, 7, 12, 16, 20, 24, 29, 37, 42, 47, 48, 51, 55, 59, 64]
@@ -96,28 +97,23 @@ class POMS:                           #フュージョンチェックメイン�
         f = [9, 22, 27, 34, 44, 57, 62]
         c = [5, 10, 25, 32, 40, 45, 60]
         #回答追加
-        ses['answers'].append(self.options[ans])
+        session['answers'].append(self.options[ans])
         #加算方法イレギュラーのもの（No.36, No.45）
-        que = ses['que']
-        if que+1 == 36 or que+1 == 45:
+        if session['que']+1 == 36 or session['que']+1 == 45:
             ans = 4 - ans
         #回答各因子への加算
-        if que+1 in fa:
-            ses['a_sum'][0] += ans
-        elif que+1 in d:
-            ses['a_sum'][1] += ans
-        elif que+1 in ah:
-            ses['a_sum'][2] += ans
-        elif que+1 in v:
-            ses['a_sum'][3] += ans
-        elif que+1 in f:
-            ses['a_sum'][4] += ans
-        elif que+1 in c:
-            ses['a_sum'][5] += ans
+        if session['que'] + 1 in fa:
+            session['a_sum'][0] += ans
+        elif session['que'] + 1 in d:
+            session['a_sum'][1] += ans
+        elif session['que'] + 1 in ah:
+            session['a_sum'][2] += ans
+        elif session['que'] + 1 in v:
+            session['a_sum'][3] += ans
+        elif session['que'] + 1 in f:
+            session['a_sum'][4] += ans
+        elif session['que'] + 1 in c:
+            session['a_sum'][5] += ans
 
-        print("ただいまの質問：{}".format(que))
-        print("ANSWER：{}".format(ses['answers']))
-        print("A_SUM: {}".format(ses['a_sum']))
-
-    def judge(self, a_sum):     #テスト結果判定（フュージョン傾向）
-        pass
+    def judge(self):     #テスト結果判定（フュージョン傾向）
+        return None

@@ -1,4 +1,5 @@
 #analyze_me/analyzer/eq_check.py       2020/11/03   M.O
+from flask import session
 
 class EQ:                           #EQ（脱中心化）チェックメインプログラム
     def __init__(self):
@@ -30,18 +31,14 @@ class EQ:                           #EQ（脱中心化）チェックメイン�
                         "非常によく当てはまる"
                         ]
 
-    def cal(self, ans, ses):         #判定結果計算
+    def cal(self, ans):         #判定結果計算
         #回答追加
-        ses['answers'].append(self.options[ans])
+        session['answers'].append(self.options[ans])
         #回答加算
-        ses['a_sum'] += ans
+        session['a_sum'] += ans
 
-        print("ただいまの質問：{}".format(ses['que']))
-        print("ANSWER：{}".format(ses['answers']))
-        print("A_SUM: {}".format(ses['a_sum']))
-
-    def judge(self, a_sum):     #テスト結果判定（脱中心化傾向）
-        if a_sum >= 25:
+    def judge(self):     #テスト結果判定（脱中心化傾向）
+        if session['a_sum'] >= 25:
             return "思考と距離を置き、思考に巻き込まれずに判断している傾向：高い"
         else:
             return "思考と距離を置き、思考に巻き込まれずに判断している傾向：低い"

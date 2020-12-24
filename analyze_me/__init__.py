@@ -19,7 +19,8 @@ login_manager.init_app(app)
 
 #DBインポート
 from analyze_me.models.user import User
-from analyze_me.models.results import FU_results, EQ_results
+from analyze_me.models.results import FU_results, EQ_results, \
+    CES_results, POM_results, TEG_results
 
 @login_manager.user_loader
 def load_user(user_id):

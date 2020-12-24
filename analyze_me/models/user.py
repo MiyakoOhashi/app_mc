@@ -16,6 +16,9 @@ class User(UserMixin, db.Model):
 
     fu_results = relationship('FU_results')
     eq_results = relationship('EQ_results')
+    ces_results = relationship('CES_results')
+    pom_results = relationship('POM_results')
+    teg_results = relationship('TEG_results')
 
     @classmethod
     def from_args(cls, user_id:str, name:str, password:str):

@@ -7,14 +7,114 @@
         <h2>List of Logs</h2>
         <p class="symbol"><span class="far fa-gem"></span></p>
 
+        <!-- TEGエゴグラム結果表示 -->
         <div>
-            <h5>FU_Check</h5>
+            <h5>TEG_Egogram</h5>
             <table border="1">
+
+                {% if teg_results %}
+                <tr>
+                    <th>実施日</th>
+                    <th>合計点</th>
+                </tr>
+                {% else %}
+                    <p>結果がありません</p>
+                {% endif %}
+
+                {% for teg_res in teg_results %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('views.result', ex_id='teg', result_id=teg_res.id) }}">
+                            {{ teg_res.created_at }}
+                        </a>
+                    </td>
+                    <td>
+                        {% for fac in session.teg_fac %}
+                            {{ fac }}: {{ teg_res.a_sum[loop.index-1] }}
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <!-- POMS結果表示 -->
+        <div>
+            <h5>POMS</h5>
+            <table border="1">
+
+                {% if pom_results %}
+                <tr>
+                    <th>実施日</th>
+                    <th>合計点</th>
+                </tr>
+                {% else %}
+                    <p>結果がありません</p>
+                {% endif %}
+
+                {% for pom_res in pom_results %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('views.result', ex_id='pom', result_id=pom_res.id) }}">
+                            {{ pom_res.created_at }}
+                        </a>
+                    </td>
+                    <td>
+                        {% for fac in session.pom_fac %}
+                            {{ fac }}: {{ pom_res.a_sum[loop.index-1] }}
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <!-- CES-D結果表示 -->
+        <div>
+            <h5>CES_D</h5>
+            <table border="1">
+
+                {% if ces_results %}
                 <tr>
                     <th>実施日</th>
                     <th>判定</th>
                     <th>合計点</th>
                 </tr>
+                {% else %}
+                    <p>結果がありません</p>
+                {% endif %}
+
+                {% for ces_res in ces_results %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('views.result', ex_id='ces', result_id=ces_res.id) }}">
+                            {{ ces_res.created_at }}
+                        </a>
+                    </td>
+                    <td>{{ ces_res.judge }}</td>
+                    <td>{{ ces_res.a_sum }}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <!-- FUチェック結果表示 -->
+        <div>
+            <h5>FU_Check</h5>
+            <table border="1">
+
+                {% if fu_results %}
+                <tr>
+                    <th>実施日</th>
+                    <th>判定</th>
+                    <th>合計点</th>
+                </tr>
+                {% else %}
+                    <p>結果がありません</p>
+                {% endif %}
 
                 {% for fu_res in fu_results %}
                 <tr>
@@ -26,21 +126,25 @@
                     <td>{{ fu_res.judge }}</td>
                     <td>{{ fu_res.a_sum }}</td>
                 </tr>
-                {% else %}
-                    <p>結果がありません</p>
                 {% endfor %}
 
             </table>
         </div>
 
+        <!-- EQチェック結果表示 -->
         <div>
             <h5>EQ_Check</h5>
             <table border="1">
+
+                {% if eq_results %}
                 <tr>
                     <th>実施日</th>
                     <th>判定</th>
                     <th>合計点</th>
                 </tr>
+                {% else %}
+                    <p>結果がありません</p>
+                {% endif %}
 
                 {% for eq_res in eq_results %}
                 <tr>
@@ -52,12 +156,12 @@
                     <td>{{ eq_res.judge }}</td>
                     <td>{{ eq_res.a_sum }}</td>
                 </tr>
-                {% else %}
-                    <p>結果がありません</p>
                 {% endfor %}
 
             </table>
         </div>
+
+        <a href="{{ url_for('analyzes.analyzer_list') }}">アナライザリスト画面へ</a>
 
     </div>
 </section>

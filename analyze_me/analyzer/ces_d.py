@@ -1,4 +1,5 @@
 #analyze_me/analyzer/ces_d.py       2020/11/03   M.O
+from flask import session
 
 class CES_D:                           #CES-Dメインプログラム
     def __init__(self):
@@ -39,26 +40,21 @@ class CES_D:                           #CES-Dメインプログラム
                         "５日以上"
                         ]
 
-    def cal(self, ans, ses):         #判定結果計算
+    def cal(self, ans):         #判定結果計算
         #回答追加
-        ses['answers'].append(self.options[ans])
+        session['answers'].append(self.options[ans])
         # 加算方法イレギュラーのもの（No.3, No.7, No.15）
-        que = ses['que']
-        if que == 3 or que == 7 or que == 15:
+        if session['que'] == 3 or session['que'] == 7 or session['que'] == 15:
             ans = 3 - ans
         #回答加算
-        ses['a_sum'] += ans
+        session['a_sum'] += ans
 
-        print("ただいまの質問：{}".format(que))
-        print("ANSWER：{}".format(ses['answers']))
-        print("A_SUM: {}".format(ses['a_sum']))
-
-    def judge(self, a_sum):     #テスト結果判定（脱中心化傾向）
-        if a_sum >= 26:
+    def judge(self):     #テスト結果判定（うつ度）
+        if session['a_sum'] >= 26:
             return "重度抑うつ"
-        elif a_sum >= 21:
+        elif session['a_sum'] >= 21:
             return "中度抑うつ"
-        elif a_sum >= 17:
+        elif session['a_sum'] >= 17:
             return "軽度抑うつ"
         else:
             return "正常"

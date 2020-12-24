@@ -14,7 +14,8 @@
         <p>{{ ana.desc }}</p>
 
         <a href="{{ url_for('analyzes.analyzer', ex_id=session.ex_id) }}">テストを始める</a>
-
+        <br>
+        <a href="{{ url_for('analyzes.analyzer_list') }}">アナライザリストに戻る</a>
     </div>
 </section>
 

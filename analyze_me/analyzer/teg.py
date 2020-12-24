@@ -1,6 +1,7 @@
 #analyze_me/analyzer/teg.py       2020/11/09   M.O
+from flask import session
 
-class TEG:                           #フュージョンチェックメインプログラム
+class TEG:                           #TEGエゴグラムメインプログラム
     def __init__(self):
         #テストID
         self.id = "teg"
@@ -73,7 +74,7 @@ class TEG:                           #フュージョンチェックメインプ
         #因子設定
         self.fac = ["cp", "np", "a", "fc", "ac", "l"]
 
-    def cal(self, ans, ses):         #判定結果計算
+    def cal(self, ans):         #判定結果計算
         # 各因子に関する項目
         cp = [2, 14, 23, 24, 26, 29, 41, 50, 51, 53]
         np = [5, 8, 13, 21, 25, 32, 35, 40, 48, 52]
@@ -82,25 +83,20 @@ class TEG:                           #フュージョンチェックメインプ
         ac = [1, 4, 7, 9, 19, 28, 31, 34, 46, 46]
         l = [20, 27, 47]
         #回答追加
-        ses['answers'].append(self.options[ans])
+        session['answers'].append(self.options[ans])
         #回答各因子に追加
-        que = ses['que']
-        if que+1 in cp:
-            ses['a_sum'][0] += ans
-        elif que+1 in np:
-            ses['a_sum'][1] += ans
-        elif que+1 in a:
-            ses['a_sum'][2] += ans
-        elif que+1 in fc:
-            ses['a_sum'][3] += ans
-        elif que+1 in ac:
-            ses['a_sum'][4] += ans
-        elif que+1 in l:
-            ses['a_sum'][5] += ans
+        if session['que'] + 1 in cp:
+            session['a_sum'][0] += ans
+        elif session['que'] + 1 in np:
+            session['a_sum'][1] += ans
+        elif session['que'] + 1 in a:
+            session['a_sum'][2] += ans
+        elif session['que'] + 1 in fc:
+            session['a_sum'][3] += ans
+        elif session['que'] + 1 in ac:
+            session['a_sum'][4] += ans
+        elif session['que'] + 1 in l:
+            session['a_sum'][5] += ans
 
-        print("ただいまの質問：{}".format(que))
-        print("ANSWER：{}".format(ses['answers']))
-        print("A_SUM: {}".format(ses['a_sum']))
-
-    def judge(self, a_sum):     #テスト結果判定（フュージョン傾向）
-        pass
+    def judge(self):     #テスト結果判定
+        return None

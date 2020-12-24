@@ -14,18 +14,21 @@ def index():
     return render_template('index.html')
 
 #個人情報(過去log)ページ
-@views.route('/logs')
+@views.route('/logs/')
 @login_required
 def show_logs():
     fu_results = analyzer_service.find_all('fu')
     eq_results = analyzer_service.find_all('eq')
-    return render_template('logs/logs.html', \
-                           fu_results=fu_results, \
-                           eq_results=eq_results)
+    ces_results = analyzer_service.find_all('ces')
+    pom_results = analyzer_service.find_all('pom')
+    teg_results = analyzer_service.find_all('teg')
+    return render_template('logs/logs.html', fu_results=fu_results, \
+                           eq_results=eq_results, ces_results=ces_results, \
+                           pom_results=pom_results, teg_results=teg_results)
 
 
 #結果表示
-@views.route('/result/<ex_id>/<result_id>', methods=['GET'])
+@views.route('/result/<ex_id>/resultNo<result_id>/', methods=['GET'])
 @login_required
 def result(ex_id, result_id):
     ana = analyzer_service.setting_analyzer(ex_id)

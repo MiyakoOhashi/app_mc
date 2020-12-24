@@ -14,7 +14,7 @@
                 {% for f in range(0, result.a_sum|length) %}
                     <td class="tdA">{{ ana.fac[f] }}</td>
                     <td>{{ result.a_sum[f] }}</td>
-                {% endfor %}
+                {% endfor %}å
             </tr>
         </table>
 
@@ -33,7 +33,9 @@
             {% endfor %}
         </table>
 
-        <a href="{{ url_for('analyzes.analyzer_list') }}">リストに戻る</a>
+        <a href="{{ url_for('views.show_logs') }}">過去ログ画面へ</a>
+        <br>
+        <a href="{{ url_for('analyzes.analyzer_list') }}">アナライザリスト画面へ</a>
 
     </div>
 </section>

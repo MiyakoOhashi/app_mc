@@ -1,4 +1,5 @@
 #analyze_me/analyzer/fu_check.py       2020/10/08   M.O
+from flask import session
 
 class FU:                           #フュージョンチェックメインプログラム
     def __init__(self):
@@ -29,20 +30,16 @@ class FU:                           #フュージョンチェックメインプ�
                         "いつも当てはまる"
                         ]
 
-    def cal(self, ans, ses):         #判定結果計算
+    def cal(self, ans):         #判定結果計算
         #回答追加
-        ses['answers'].append(self.options[ans])
+        session['answers'].append(self.options[ans])
         #回答加算
-        ses['a_sum'] += ans
+        session['a_sum'] += ans
 
-        print("ただいまの質問：{}".format(ses['que']))
-        print("ANSWER：{}".format(ses['answers']))
-        print("A_SUM: {}".format(ses['a_sum']))
-
-    def judge(self, a_sum):     #テスト結果判定（フュージョン傾向）
-        if a_sum > 27:
+    def judge(self):     #テスト結果判定（フュージョン傾向）
+        if session['a_sum'] > 27:
             return "思考と現実を混同し、考え込みやすい傾向があります"
-        elif a_sum == 27:
+        elif session['a_sum'] == 27:
             return "一般平均値です"
         else:
             return "思考と現実を混同しやすい傾向は薄いです"

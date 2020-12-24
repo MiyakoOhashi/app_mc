@@ -3,7 +3,7 @@
 from flask import request, redirect, url_for, \
     render_template, flash, session, Blueprint
 #from functools import wraps
-from analyze_me.services import auth_service
+from analyze_me.services import auth_service, analyzer_service
 
 auth = Blueprint('auth', __name__)
 
@@ -47,6 +47,7 @@ def login():
 def logout():
     #session.pop('logged_in', None)
     auth_service.logout()
+    analyzer_service.delete_param()
     flash('ログアウトしました')
     return redirect(url_for('views.index'))
 
