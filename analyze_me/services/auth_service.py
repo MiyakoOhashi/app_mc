@@ -39,9 +39,12 @@ def login(data: {}) -> User:
             user = 'empty'
             return user
         user = User.query.filter_by(user_id=user_id).first()
+        # ユーザ確認、パスワード確認
+        if not user or not user.check_password(password):
+            return
         #ユーザとパスワード確認
-        if not user and not user.check_password(user.password, password):
-            raise SQLAlchemyError
+        #if not user and not user.check_password(user.password, password):
+        #    raise SQLAlchemyError
 
         #ログイン維持
         login_user(user, remember=remember)

@@ -42,7 +42,7 @@ def analyzer(ex_id):
 
         if session['que'] >= len(ana.queries):
             session['judge'] = ana.judge()
-            result_id = analyzer_service.save(current_user.id)
+            result_id = analyzer_service.save()
             return redirect(url_for('views.result', ex_id=ex_id, result_id=result_id))
     return render_template('analyzer/query.html', ana=ana)
 

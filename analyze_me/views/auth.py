@@ -5,6 +5,7 @@ from flask import request, redirect, url_for, \
 #from functools import wraps
 from analyze_me.services import auth_service, analyzer_service
 
+#ブループリント設定
 auth = Blueprint('auth', __name__)
 
 #ユーザデータ登録
@@ -33,8 +34,8 @@ def login():
         if user == 'empty':
             flash('未記入の項目があります')
             return render_template('auth/login.html')
-        if not user:
-            flash('ユーザIDもしくはパスワードに誤りがあります')
+        elif not user:
+            flash('ユーザIDまたはパスワードに誤りがあります')
             return render_template('auth/login.html')
         else:
             #session['logged_in'] = True

@@ -1,6 +1,7 @@
 #analyze_me/services/analyzer_service.py       2020/12/10   M.O
 #ログイン関連データ処理ファイル
 from flask import session
+from flask_login import current_user
 from sqlalchemy.exc import SQLAlchemyError
 from analyze_me import db
 from analyze_me.models.results import FU_results, EQ_results, \
@@ -51,17 +52,17 @@ def setting_analyzer(ex_id):
 #全データ検索
 def find_all(ex_id):
     if ex_id == 'fu':
-        return FU_results.query.all()
+        return FU_results.query.filter(FU_results.user_id == current_user.id).order_by(FU_results.id.desc()).all()
     elif ex_id == 'eq':
-        return EQ_results.query.all()
+        return EQ_results.query.filter(EQ_results.user_id == current_user.id).order_by(EQ_results.id.desc()).all()
     elif ex_id == 'ces':
-        return CES_results.query.all()
+        return CES_results.query.filter(CES_results.user_id == current_user.id).order_by(CES_results.id.desc()).all()
     elif ex_id == 'pom':
         session['pom_fac'] = ["fa", "d", "ah", "v", "f", "c"]
-        return POM_results.query.all()
+        return POM_results.query.filter(POM_results.user_id == current_user.id).order_by(POM_results.id.desc()).all()
     elif ex_id == 'teg':
         session['teg_fac'] = ["cp", "np", "a", "fc", "ac", "l"]
-        return TEG_results.query.all()
+        return TEG_results.query.filter(TEG_results.user_id == current_user.id).order_by(TEG_results.id.desc()).all()
 
 #選択データ検索
 def find_one(ex_id, result_id):
@@ -79,14 +80,14 @@ def find_one(ex_id, result_id):
         return TEG_results.query.filter_by(id=result_id).first()
 
 #データ格納
-def save(user_id) :
+def save() :
     try:
         if session['ex_id'] == 'fu':
             new_res = FU_results.from_args(
                 answers= session['answers'],
                 a_sum=session['a_sum'],
                 judge=session['judge'],
-                user_id=user_id
+                user_id=current_user.id
             )
 
         elif session['ex_id'] == 'eq':
@@ -94,7 +95,7 @@ def save(user_id) :
                 answers=session['answers'],
                 a_sum=session['a_sum'],
                 judge=session['judge'],
-                user_id=user_id
+                user_id=current_user.id
             )
 
         elif session['ex_id'] == 'ces':
@@ -102,21 +103,21 @@ def save(user_id) :
                 answers=session['answers'],
                 a_sum=session['a_sum'],
                 judge=session['judge'],
-                user_id=user_id
+                user_id=current_user.id
             )
 
         elif session['ex_id'] == 'pom':
             new_res = POM_results.from_args(
                 answers=session['answers'],
                 a_sum=session['a_sum'],
-                user_id=user_id
+                user_id=current_user.id
             )
 
         elif session['ex_id'] == 'teg':
             new_res = TEG_results.from_args(
                 answers=session['answers'],
                 a_sum=session['a_sum'],
-                user_id=user_id
+                user_id=current_user.id
             )
 
         #データベース登録
