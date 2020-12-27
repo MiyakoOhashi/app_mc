@@ -5,10 +5,11 @@
 <section class="logA">
     <div class="con">
         <h2>List of Logs</h2>
+        <p>ようこそ{{ current_user.name }}さん！</p>
         <p class="symbol"><span class="far fa-gem"></span></p>
 
         <!-- TEGエゴグラム結果表示 -->
-        <div>
+        <div class="test-block">
             <h5>TEG_Egogram</h5>
             <table border="1">
 
@@ -16,6 +17,7 @@
                 <tr>
                     <th>実施日</th>
                     <th>合計点</th>
+                    <th>詳細</th>
                 </tr>
                 {% else %}
                     <p>結果がありません</p>
@@ -24,15 +26,23 @@
                 {% for teg_res in teg_results %}
                 <tr>
                     <td>
-                        <a href="{{ url_for('views.result', ex_id='teg', result_id=teg_res.id) }}">
-                            {{ teg_res.created_at }}
-                        </a>
+                        {{ "{0:%Y-%m-%d}".format(teg_res.created_at) }}
                     </td>
                     <td>
                         {% for fac in session.teg_fac %}
                             {{ fac }}: {{ teg_res.a_sum[loop.index-1] }}
                         {% endfor %}
                     </td>
+                    <td>
+                        <a href="{{ url_for('views.result', ex_id='teg', result_id=teg_res.id) }}" >
+                            表示
+                        </a>
+                    </td>
+                    <!-- td>
+                        <form action="{{ url_for('views.delete_result', ex_id='teg', result_id=teg_res.id) }}" method="post" >
+                            <button type="submit">削除</button>
+                        </form>
+                    </td -->
                 </tr>
                 {% endfor %}
 
@@ -40,7 +50,7 @@
         </div>
 
         <!-- POMS結果表示 -->
-        <div>
+        <div class="test-block">
             <h5>POMS</h5>
             <table border="1">
 
@@ -48,6 +58,7 @@
                 <tr>
                     <th>実施日</th>
                     <th>合計点</th>
+                    <th>詳細</th>
                 </tr>
                 {% else %}
                     <p>結果がありません</p>
@@ -56,15 +67,23 @@
                 {% for pom_res in pom_results %}
                 <tr>
                     <td>
-                        <a href="{{ url_for('views.result', ex_id='pom', result_id=pom_res.id) }}">
-                            {{ pom_res.created_at }}
-                        </a>
+                        {{ "{0:%Y-%m-%d}".format(pom_res.created_at) }}
                     </td>
                     <td>
                         {% for fac in session.pom_fac %}
                             {{ fac }}: {{ pom_res.a_sum[loop.index-1] }}
                         {% endfor %}
                     </td>
+                    <td>
+                        <a href="{{ url_for('views.result', ex_id='pom', result_id=pom_res.id) }}">
+                            表示
+                        </a>
+                    </td>
+                    <!-- td>
+                        <form action="{{ url_for('views.delete_result', ex_id='pom', result_id=pom_res.id) }}" method="post" >
+                            <button type="submit">削除</button>
+                        </form>
+                    </td -->
                 </tr>
                 {% endfor %}
 
@@ -72,7 +91,7 @@
         </div>
 
         <!-- CES-D結果表示 -->
-        <div>
+        <div class="test-block">
             <h5>CES_D</h5>
             <table border="1">
 
@@ -81,6 +100,7 @@
                     <th>実施日</th>
                     <th>判定</th>
                     <th>合計点</th>
+                    <th>詳細</th>
                 </tr>
                 {% else %}
                     <p>結果がありません</p>
@@ -89,12 +109,20 @@
                 {% for ces_res in ces_results %}
                 <tr>
                     <td>
-                        <a href="{{ url_for('views.result', ex_id='ces', result_id=ces_res.id) }}">
-                            {{ ces_res.created_at }}
-                        </a>
+                        {{ "{0:%Y-%m-%d}".format(ces_res.created_at) }}
                     </td>
                     <td>{{ ces_res.judge }}</td>
                     <td>{{ ces_res.a_sum }}</td>
+                    <td>
+                        <a href="{{ url_for('views.result', ex_id='ces', result_id=ces_res.id) }}">
+                            表示
+                        </a>
+                    </td>
+                    <!-- td>
+                        <form action="{{ url_for('views.delete_result', ex_id='ces', result_id=ces_res.id) }}" method="post" >
+                            <button type="submit">削除</button>
+                        </form>
+                    </td -->
                 </tr>
                 {% endfor %}
 
@@ -102,7 +130,7 @@
         </div>
 
         <!-- FUチェック結果表示 -->
-        <div>
+        <div class="test-block">
             <h5>FU_Check</h5>
             <table border="1">
 
@@ -111,6 +139,7 @@
                     <th>実施日</th>
                     <th>判定</th>
                     <th>合計点</th>
+                    <th>詳細</th>
                 </tr>
                 {% else %}
                     <p>結果がありません</p>
@@ -119,12 +148,20 @@
                 {% for fu_res in fu_results %}
                 <tr>
                     <td>
-                        <a href="{{ url_for('views.result', ex_id='fu', result_id=fu_res.id) }}">
-                            {{ fu_res.created_at }}
-                        </a>
+                        {{ "{0:%Y-%m-%d}".format(fu_res.created_at) }}
                     </td>
                     <td>{{ fu_res.judge }}</td>
                     <td>{{ fu_res.a_sum }}</td>
+                    <td/>
+                        <a href="{{ url_for('views.result', ex_id='fu', result_id=fu_res.id) }}">
+                            表示
+                        </a>
+                    </td>
+                    <!-- td>
+                        <form action="{{ url_for('views.delete_result', ex_id='fu', result_id=fu_res.id) }}" method="post" >
+                            <button type="submit">削除</button>
+                        </form>
+                    </td -->
                 </tr>
                 {% endfor %}
 
@@ -132,7 +169,7 @@
         </div>
 
         <!-- EQチェック結果表示 -->
-        <div>
+        <div class="test-block">
             <h5>EQ_Check</h5>
             <table border="1">
 
@@ -141,6 +178,7 @@
                     <th>実施日</th>
                     <th>判定</th>
                     <th>合計点</th>
+                    <th>詳細</th>
                 </tr>
                 {% else %}
                     <p>結果がありません</p>
@@ -149,19 +187,27 @@
                 {% for eq_res in eq_results %}
                 <tr>
                     <td>
-                    <a href="{{ url_for('views.result', ex_id='eq', result_id=eq_res.id) }}">
-                        {{ eq_res.created_at }}
-                    </a>
+                        {{ "{0:%Y-%m-%d}".format(eq_res.created_at) }}
                     </td>
                     <td>{{ eq_res.judge }}</td>
                     <td>{{ eq_res.a_sum }}</td>
+                    <td>
+                        <a href="{{ url_for('views.result', ex_id='eq', result_id=eq_res.id) }}">
+                            表示
+                        </a>
+                    </td>
+                    <!-- td>
+                        <form action="{{ url_for('views.delete_result', ex_id='eq', result_id=eq_res.id) }}" method="post" >
+                            <button type="submit">削除</button>
+                        </form>
+                    </td -->
                 </tr>
                 {% endfor %}
 
             </table>
         </div>
 
-        <a href="{{ url_for('analyzes.analyzer_list') }}">アナライザリスト画面へ</a>
+        <a href="{{ url_for('analyzes.analyzer_list') }}" class="list-btn">アナライザリスト画面へ</a>
 
     </div>
 </section>

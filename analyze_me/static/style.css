@@ -401,6 +401,7 @@ body {
     max-width: var(--middle-width);
     margin-left: auto;
     margin-right: auto;
+    padding: 0 15px;
 }
 
 .resA h2 {
@@ -430,23 +431,39 @@ body {
 }
 
 .resA p {
+    margin: 0;
+}
+
+.resA .sum {
     margin: 0 0 30px;
 }
 
+.resA .tbl {
+    overflow-y: scroll;
+    height: 25rem;
+    margin-bottom: 1rem;
+}
+
 .resA table {
-    margin: 0 10px 15px;
+    margin: 0 auto 1rem auto;
     font-size: 12px;
     text-align: left;
 }
 
+.resA table th,
+.resA table td {
+    padding: 0 3px;
+}
+
 .resA tr {
-    margin: 1px 1px
+    margin: 1px 1px;
 }
 
 .resA a {
     display: inline-block;
     padding: 10px;
-    width: 300px;
+    margin: 0 2px 0.5rem 2px;
+    width: 250px;
     border: solid 3px currentColor;
     border-radius: 6px;
     background-color: #E68E9F;
@@ -465,6 +482,11 @@ body {
         rgba(255,255,255,0.2),
         rgba(255,255,255,0.2)
     );
+}
+
+.resA .list-btn {
+    background-color: #3A7E99;
+    background-color: var(--dark-color);
 }
 
 /* 結果表示画面B _graph */
@@ -489,6 +511,7 @@ body {
     max-width: var(--middle-width);
     margin-left: auto;
     margin-right: auto;
+    padding: 0 15px;
 }
 
 .resB h2 {
@@ -521,19 +544,39 @@ body {
     margin: 0 0 30px;
 }
 
-.resB .tabA,
-.resB .tabB {
-    margin:0 10px 15px;
+.resB .tabA {
+    margin: 0 auto 1rem auto;
     font-size: 12px;
+}
+
+.resB .tabA .tdA {
+    background-color: #77C7E6;
+    background-color: var(--main-color);
 }
 
 .resB .tabA td {
     width: 30px;
 }
 
-.resB .tabA .tdA {
-    background-color: #77C7E6;
-    background-color: var(--main-color);
+.resB .tbl {
+    overflow-y: scroll;
+    height: 25rem;
+    margin-bottom: 1rem;
+}
+
+.resB .tabB {
+    margin: 0 auto 1rem auto;
+    font-size: 12px;
+    text-align: left;
+}
+
+.resB .tabB .ttl {
+    position: sticky;
+}
+
+.resB .tabB th,
+.resB .tabB td {
+    padding: 0 3px;
 }
 
 .resB table tr {
@@ -543,7 +586,8 @@ body {
 .resB a {
     display: inline-block;
     padding: 10px;
-    width: 300px;
+    margin: 0 2px 0.5rem 2px;
+    width: 250px;
     border: solid 3px currentColor;
     border-radius: 6px;
     background-color: #E68E9F;
@@ -562,6 +606,11 @@ body {
         rgba(255,255,255,0.2),
         rgba(255,255,255,0.2)
     );
+}
+
+.resB .list-btn {
+    background-color: #3A7E99;
+    background-color: var(--dark-color);
 }
 
 /* 結果一覧画面 */
@@ -596,6 +645,104 @@ body {
     letter-spacing: 0.1em;
     margin-left: 0.1em;
 }
+
+.logA .symbol {
+    margin: 1.25rem;
+    /* margin: 20px; */
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 2rem;
+    /* font-size: 28px; */
+    opacity: 0.5;
+}
+
+.logA p {
+    margin: 15px 0;
+}
+
+.logA h5 {
+    margin: 10px 0 5px 0;
+    font-family: 'Big Shoulders Stencil Display', cursive;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    margin-left: 0.1em;
+    tex-align: left;
+}
+
+.logA .test-block {
+    text-align: left;
+}
+
+.logA table {
+    margin-bottom: 10px;
+    /* font-size: 14px; */
+}
+
+.logA th,
+.logA td {
+    padding: 0 5px;
+}
+
+.logA a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.logA a:hover {
+    text-decoration: none;
+    color: inherit;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.logA .list-btn {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px 2px 0.5rem 2px;
+    width: 250px;
+    border: solid 3px currentColor;
+    border-radius: 6px;
+    background-color: #3A7E99;
+    background-color: var(--dark-color);
+    color: #fff;
+    color: var(--text-bright-color);
+    /* font-size: 14px; */
+    text-decoration: none;
+}
+
+.logA .list-btn:hover {
+    color: #fff;
+    color: var(--text-bright-color);
+    text-decoration: none;
+    background-color: #3A7E99;
+    background-color: var(--dark-color);
+    background-image: linear-gradient(
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0.2)
+    );
+}
+
+/* フォントサイズ */
+@media (max-width: 599px) {
+    .logA table {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 799px) {
+    .logA table {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 800px) {
+    .logA table {
+        font-size: 16px;
+    }
+}
+
 
 /* ログイン画面 */
 .loginA {

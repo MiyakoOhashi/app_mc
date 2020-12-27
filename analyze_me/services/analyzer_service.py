@@ -1,5 +1,5 @@
 #analyze_me/services/analyzer_service.py       2020/12/10   M.O
-#ログイン関連データ処理ファイル
+#アナライザ関連データ処理ファイル
 from flask import session
 from flask_login import current_user
 from sqlalchemy.exc import SQLAlchemyError
@@ -23,7 +23,6 @@ def set_param(ex_id):
     else:                                       #FU, EQ, CES-D
         session['a_sum'] = 0
 
-
 # セッション情報削除
 def delete_param():
     session.pop('ex_id', None)
@@ -31,7 +30,6 @@ def delete_param():
     session.pop('a_sum', None)
     session.pop('judge', None)
     session.pop('que', None)
-
 
 #アナライザ設定
 def setting_analyzer(ex_id):
@@ -48,36 +46,6 @@ def setting_analyzer(ex_id):
     elif ex_id == 'teg':
         return TEG()
     print("EX_ID:{}".format(ex_id))
-
-#全データ検索
-def find_all(ex_id):
-    if ex_id == 'fu':
-        return FU_results.query.filter(FU_results.user_id == current_user.id).order_by(FU_results.id.desc()).all()
-    elif ex_id == 'eq':
-        return EQ_results.query.filter(EQ_results.user_id == current_user.id).order_by(EQ_results.id.desc()).all()
-    elif ex_id == 'ces':
-        return CES_results.query.filter(CES_results.user_id == current_user.id).order_by(CES_results.id.desc()).all()
-    elif ex_id == 'pom':
-        session['pom_fac'] = ["fa", "d", "ah", "v", "f", "c"]
-        return POM_results.query.filter(POM_results.user_id == current_user.id).order_by(POM_results.id.desc()).all()
-    elif ex_id == 'teg':
-        session['teg_fac'] = ["cp", "np", "a", "fc", "ac", "l"]
-        return TEG_results.query.filter(TEG_results.user_id == current_user.id).order_by(TEG_results.id.desc()).all()
-
-#選択データ検索
-def find_one(ex_id, result_id):
-    if not result_id:
-        raise Exception
-    elif ex_id == "fu":
-        return FU_results.query.filter_by(id=result_id).first()
-    elif ex_id == "eq":
-        return EQ_results.query.filter_by(id=result_id).first()
-    elif ex_id == "ces":
-        return CES_results.query.filter_by(id=result_id).first()
-    elif ex_id == "pom":
-        return POM_results.query.filter_by(id=result_id).first()
-    elif ex_id == "teg":
-        return TEG_results.query.filter_by(id=result_id).first()
 
 #データ格納
 def save() :
@@ -123,14 +91,10 @@ def save() :
         #データベース登録
         db.session.add(new_res)
         db.session.commit()
-
         # セッション情報削除
         delete_param()
-
-        #print("USER_ID: {}, ID: {}, ANSWERS: {}".format(new_res.user_id, new_res.id, new_res.answers))
-        #print("S_SUM: {}, JUDGE: {}, DATE: {}".format(new_res.a_sum, new_res.judge, new_res.created_at))
-
         return new_res.id
+
     except SQLAlchemyError:
         raise SQLAlchemyError
 
