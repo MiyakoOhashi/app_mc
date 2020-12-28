@@ -88,7 +88,7 @@ class TEG:                           #TEGエゴグラムメインプログラム
                         "はい"
                         ]
         #因子設定
-        self.fac = ["cp", "np", "a", "fc", "ac", "l"]
+        self.fac = ["CP", "NP", "A", "FC", "AC", "L"]
 
     def cal(self, ans):         #判定結果計算
         # 各因子に関する項目
