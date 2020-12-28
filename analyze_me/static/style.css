@@ -233,6 +233,22 @@ body {
     opacity: 0.5;
 }
 
+.desc_conA {
+    text-align: left;
+    margin-bottom: 15px;
+    padding: 0 10px
+}
+
+.descA ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.descA li {
+    margin-top: 10px;
+}
+
 .descA p {
     margin: 0;
 }
@@ -240,7 +256,8 @@ body {
 .descA a {
     display: inline-block;
     padding: 10px;
-    width: 300px;
+    margin: 0 2px 0.5rem 2px;
+    width: 280px;
     border: solid 3px currentColor;
     border-radius: 6px;
     background-color: #E68E9F;
@@ -259,6 +276,12 @@ body {
         rgba(255,255,255,0.2),
         rgba(255,255,255,0.2)
     );
+}
+
+.descA .list-btn {
+    margin-top: 10px;
+    background-color: #3A7E99;
+    background-color: var(--dark-color);
 }
 
 /* 質問画面 */
@@ -440,7 +463,7 @@ body {
 
 .resA .tbl {
     overflow-y: scroll;
-    height: 25rem;
+    height: 280px;
     margin-bottom: 1rem;
 }
 
@@ -560,7 +583,7 @@ body {
 
 .resB .tbl {
     overflow-y: scroll;
-    height: 25rem;
+    height: 280px;
     margin-bottom: 1rem;
 }
 
@@ -572,6 +595,9 @@ body {
 
 .resB .tabB .ttl {
     position: sticky;
+    &:before{
+        position: absolute;
+    }
 }
 
 .resB .tabB th,
@@ -672,6 +698,7 @@ body {
 }
 
 .logA .test-block {
+    margin-top: 15px;
     text-align: left;
 }
 

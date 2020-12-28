@@ -9,13 +9,21 @@
         <h5>{{ ana.sub }}</h5>
         <p class="symbol"><span class="far fa-gem"></span></p>
 
+        <div>
         <h5>説明</h5>
-
-        <p>{{ ana.desc }}</p>
+            <div class="desc_conA">
+                <ul>
+                    {% for desc in ana.desc %}
+                    <li>
+                        {{ desc }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
 
         <a href="{{ url_for('analyzes.analyzer', ex_id=session.ex_id) }}">テストを始める</a>
-        <br>
-        <a href="{{ url_for('analyzes.analyzer_list') }}">アナライザリストに戻る</a>
+        <a href="{{ url_for('analyzes.analyzer_list') }}" class="list-btn">アナライザリストに戻る</a>
     </div>
 </section>
 
