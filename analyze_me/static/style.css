@@ -147,6 +147,15 @@ body {
     opacity: 0.5;
 }
 
+.listA .conA {
+    align-items: center;
+    justify-content: center;
+    padding: 5px 30px 15px 30px;
+    background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url(img/bk_stripe.png);
+    background-position: center;
+    background-size: cover;
+}
+
 .listA ul {
     margin: 0;
     padding: 0;
@@ -203,6 +212,7 @@ body {
     max-width: var(--middle-width);
     margin-left: auto;
     margin-right: auto;
+
 }
 
 .descA h2 {
@@ -233,10 +243,28 @@ body {
     opacity: 0.5;
 }
 
-.desc_conA {
+.descA .conA {
+    align-items: center;
+    justify-content: center;
+    padding: 5px 30px 15px 30px;
+    background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url(img/bk_stripe.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.descA .conB {
     text-align: left;
     margin-bottom: 15px;
     padding: 0 10px
+    /*
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url(img/bk_stripe.png);
+    background-position: center;
+    background-size: cover;
+    */
 }
 
 .descA ul {
@@ -279,7 +307,6 @@ body {
 }
 
 .descA .list-btn {
-    margin-top: 10px;
     background-color: #3A7E99;
     background-color: var(--dark-color);
 }
@@ -332,6 +359,16 @@ body {
     font-size: 2rem;
     /* font-size: 28px; */
     opacity: 0.5;
+}
+
+.queA .conA {
+    align-items: center;
+    justify-content: center;
+    padding: 10px 30px 30px 30px;
+    background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url(img/bk_stripe.png);
+    background-position: center;
+    background-size: cover;
+    width: 600px;
 }
 
 .queA .quest {
@@ -575,6 +612,8 @@ body {
 .resB .tabA .tdA {
     background-color: #77C7E6;
     background-color: var(--main-color);
+    color: #fff;
+    color: var(--text-bright-color);
 }
 
 .resB .tabA td {
@@ -700,6 +739,12 @@ body {
 .logA .test-block {
     margin-top: 15px;
     text-align: left;
+}
+
+.logA .tbl {
+    overflow-y: scroll;
+    height: 5rem;
+    margin-bottom: 0.5rem;
 }
 
 .logA table {

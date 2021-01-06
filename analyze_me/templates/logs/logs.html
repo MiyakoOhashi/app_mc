@@ -9,14 +9,15 @@
         <p class="symbol"><span class="far fa-gem"></span></p>
         <p>
             これまで実施した心理テストの結果を見ることができます。<br>
-            詳細を見たいときは、＜表示＞ボタンををクリックしてください！
+            詳細を見たいときは、[表示]ボタンををクリックしてください！
         </p>
 
         <!-- TEGエゴグラム結果表示 -->
         <div class="test-block">
             <h5>TEG_Egogram</h5>
-            <table border="1">
 
+            <div class="tbl">
+            <table border="1">
                 {% if teg_results %}
                 <tr>
                     <th>実施日</th>
@@ -34,7 +35,7 @@
                     </td>
                     <td>
                         {% for fac in session.teg_fac %}
-                            {{ fac }}: {{ teg_res.a_sum[loop.index-1] }}
+                            {{ fac }}: {{ teg_res.a_sum[loop.index-1] }} |
                         {% endfor %}
                     </td>
                     <td>
@@ -49,15 +50,16 @@
                     </td -->
                 </tr>
                 {% endfor %}
-
             </table>
+            </div>
         </div>
 
         <!-- POMS結果表示 -->
         <div class="test-block">
             <h5>POMS</h5>
-            <table border="1">
 
+            <div class="tbl">
+            <table border="1">
                 {% if pom_results %}
                 <tr>
                     <th>実施日</th>
@@ -75,7 +77,7 @@
                     </td>
                     <td>
                         {% for fac in session.pom_fac %}
-                            {{ fac }}: {{ pom_res.a_sum[loop.index-1] }}
+                            {{ fac }}: {{ pom_res.a_sum[loop.index-1] }} |
                         {% endfor %}
                     </td>
                     <td>
@@ -90,15 +92,16 @@
                     </td -->
                 </tr>
                 {% endfor %}
-
             </table>
+            </div>
         </div>
 
         <!-- CES-D結果表示 -->
         <div class="test-block">
             <h5>CES_D</h5>
-            <table border="1">
 
+            <div class="tbl">
+            <table border="1">
                 {% if ces_results %}
                 <tr>
                     <th>実施日</th>
@@ -129,15 +132,17 @@
                     </td -->
                 </tr>
                 {% endfor %}
-
             </table>
+            </div>
         </div>
 
         <!-- FUチェック結果表示 -->
         <div class="test-block">
             <h5>FU_Check</h5>
-            <table border="1">
+            <img src="{{ url_for('views.plot_graph') }}">
 
+            <div class="tbl">
+            <table border="1">
                 {% if fu_results %}
                 <tr>
                     <th>実施日</th>
@@ -168,15 +173,16 @@
                     </td -->
                 </tr>
                 {% endfor %}
-
             </table>
+            </div>
         </div>
 
         <!-- EQチェック結果表示 -->
         <div class="test-block">
             <h5>EQ_Check</h5>
-            <table border="1">
 
+            <div class="tbl">
+            <table border="1">
                 {% if eq_results %}
                 <tr>
                     <th>実施日</th>
@@ -207,8 +213,8 @@
                     </td -->
                 </tr>
                 {% endfor %}
-
             </table>
+            </div>
         </div>
 
         <a href="{{ url_for('analyzes.analyzer_list') }}" class="list-btn">アナライザリスト画面へ</a>

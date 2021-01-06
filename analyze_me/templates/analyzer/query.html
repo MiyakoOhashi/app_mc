@@ -8,7 +8,8 @@
         <h2>{{ ana.name }}</h2>
         <p class="symbol"><span class="far fa-gem"></span></p>
 
-        <h5>質問{{ session.que+1 }}</h5>
+        <div class="conA">
+        <h5>□︎□︎　質問{{ session.que+1 }}　□︎□︎</h5>
         <p class="quest">{{ ana.queries[session.que] }}</p>
 
         <form action="{{ url_for('analyzes.analyzer', ex_id=session.ex_id ) }}" method="POST">
@@ -19,6 +20,7 @@
             {% endfor %}
             <input class="button" type="submit" value="決定">
         </form>
+        </div>
 
     </div>
 </section>
