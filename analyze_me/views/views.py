@@ -22,39 +22,56 @@ def show_logs():
     ces_results = views_service.find_all('ces')
     pom_results = views_service.find_all('pom')
     teg_results = views_service.find_all('teg')
+    ces_date, ces_asum = graph_service.ex_all_data('ces')  # ces-d
+    fu_date, fu_asum = graph_service.ex_all_data('fu')  # fu
+    eq_date, eq_asum = graph_service.ex_all_data('eq')  # eq
     return render_template('logs/logs.html', fu_results=fu_results, \
                            eq_results=eq_results, ces_results=ces_results, \
-                           pom_results=pom_results, teg_results=teg_results)
+                           pom_results=pom_results, teg_results=teg_results, \
+                           ces_date=ces_date, ces_asum=ces_asum, fu_date=fu_date, \
+                           fu_asum=fu_asum, eq_date=eq_date, eq_asum=eq_asum)
 
 
-#グラフ表示
-@views.route('/logs/graph_fu/')
+#グラフ表示(log画面)
+@views.route('/logs/graph/')
 def plot_graph():
-    response = graph_service.draw_graph('fu')
+    response = graph_service.draw_three_graphs()
     return response
 
 
-#結果表示
-@views.route('/result/<ex_id>/No<result_id>/', methods=['GET'])
-@login_required
-def result(ex_id, result_id):
-    ana = analyzer_service.setting_analyzer(ex_id)
-    result = views_service.find_one(ex_id, result_id)
-    if ex_id == 'pom' or ex_id == 'teg':
-        return render_template('logs/result_graph.html', \
-                               ex_id=ex_id, ana=ana, result=result)
-    else:
-        return render_template('logs/result.html', \
-                                ex_id=ex_id, ana=ana, result=result)
-
-
-#表示内容削除
-@views.route('/result/delete/<ex_id>/No<result_id>/', methods=['POST'])
+#表示内容削除(log画面)＜通常非表示＞
+@views.route('/result/delete/<ex_id>/<result_id>/', methods=['POST'])
 @login_required
 def delete_result(ex_id, result_id):
     views_service.delete(ex_id, result_id)
     flash('データを削除しました')
     return redirect(url_for('views.show_logs'))
+
+
+#結果表示
+@views.route('/result/<ex_id>/<result_id>/', methods=['GET'])
+@login_required
+def result(ex_id, result_id):
+    ana = analyzer_service.setting_analyzer(ex_id)
+    result = views_service.find_one(ex_id, result_id)
+
+    if ex_id == 'pom' or ex_id == 'teg':
+        g_fac, g_sum = graph_service.ex_one_data(ex_id, result_id)
+
+        return render_template('logs/result_graph.html', \
+                               ex_id=ex_id, result_id=result_id, \
+                               ana=ana, result=result, g_fac=g_fac, g_sum=g_sum)
+    else:
+        return render_template('logs/result.html', \
+                                ex_id=ex_id, result_id=result_id, \
+                                ana=ana, result=result)
+
+
+#グラフ表示(個別画面＿TEG, POMS)
+@views.route('/logs/graph/<ex_id>/<result_id>/')
+def plot_graph_indivi(ex_id, result_id):
+    response = graph_service.draw_graph(ex_id, result_id)
+    return response
 
 
 #404エラー時処理

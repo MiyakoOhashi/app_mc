@@ -11,7 +11,7 @@
             これまで実施した心理テストの結果を見ることができます。<br>
             詳細を見たいときは、[表示]ボタンををクリックしてください！
         </p>
-
+        <br>
         <!-- TEGエゴグラム結果表示 -->
         <div class="test-block">
             <h5>TEG_Egogram</h5>
@@ -134,12 +134,21 @@
                 {% endfor %}
             </table>
             </div>
+
+            {% if ces_results %}
+                <div class="chartA">
+                    <canvas id="cesChart" class="chartB" height="150" width="700"></canvas>
+                </div>
+                <!--div class="chart1">
+                    <img src="{{ url_for('views.plot_graph') }}" >
+                </div-->
+            {% endif %}
+
         </div>
 
         <!-- FUチェック結果表示 -->
         <div class="test-block">
             <h5>FU_Check</h5>
-            <img src="{{ url_for('views.plot_graph') }}">
 
             <div class="tbl">
             <table border="1">
@@ -175,6 +184,16 @@
                 {% endfor %}
             </table>
             </div>
+
+            {% if fu_results %}
+                <div class="chartA">
+                    <canvas id="fuChart" class="chartB" height="150" width="700"></canvas>
+                </div>
+                <!--div class="chart2">
+                    <img src="{{ url_for('views.plot_graph') }}" >
+                </div-->
+            {% endif %}
+
         </div>
 
         <!-- EQチェック結果表示 -->
@@ -215,11 +234,96 @@
                 {% endfor %}
             </table>
             </div>
+
+            {% if eq_results %}
+                <div class="chartA">
+                    <canvas id="eqChart" class="chartB" height="150" width="700"></canvas>
+                </div>
+                <!--div class="chart3">
+                    <img src="{{ url_for('views.plot_graph') }}" >
+                </div-->
+            {% endif %}
+
         </div>
 
         <a href="{{ url_for('analyzes.analyzer_list') }}" class="list-btn">アナライザリスト画面へ</a>
 
     </div>
 </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    var items1 = {{ ces_date|safe }}
+    var data1 = {{ ces_asum|safe }}
+    var chart_id1 = 'cesChart'
+    var ymax1 = 30
+    var config1 = mk_config(items1, data1, chart_id1, ymax1);
+
+    var items2 = {{ fu_date|safe }}
+    var data2 = {{ fu_asum|safe }}
+    var chart_id2 = 'fuChart'
+    var ymax2 = 40
+    var config2 = mk_config(items2, data2, chart_id2, ymax2);
+
+    var items3 = {{ eq_date|safe }}
+    var data3 = {{ eq_asum|safe }}
+    var chart_id3 = 'eqChart'
+    var ymax3 = 40
+    var config3 = mk_config(items3, data3, chart_id3, ymax3);
+
+    window.onload = function() {
+        var ctx1 = document.getElementById(chart_id1).getContext('2d');
+        window.myLine = new Chart(ctx1, config1);
+
+        var ctx2 = document.getElementById(chart_id2).getContext('2d');
+        window.myLine = new Chart(ctx2, config2);
+
+        var ctx3 = document.getElementById(chart_id3).getContext('2d');
+        window.myLine = new Chart(ctx3, config3);
+    };
+
+    function　mk_config(items, data, chart_id, ymax) {
+        var config = {
+            type: 'line',
+            data: {
+                labels: items,
+                datasets: [{
+                    backgroundColor: '#E68E9F',
+                    borderColor: '#E68E9F',
+                    data: data,
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: false,
+                legend: false,
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        ticks: {
+                            autoSkip: false,
+                            maxTicksLimit: 10,
+                            minRotation: 30
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                        },
+                        ticks: {
+                            min: 0,
+                            max: ymax,
+                            stepSize: 10
+                        }
+                    }]
+                }
+            }
+        };
+        return config
+    };
+
+</script>
 
 {% endblock %}

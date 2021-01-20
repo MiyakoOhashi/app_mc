@@ -8,10 +8,16 @@
         <h2>{{ ana.name }}</h2>
         <p class="symbol"><span class="far fa-gem"></span></p>
 
-        <h5>判定</h5>
+        <h5>
+            <span class="fas fa-angle-double-left"></span>
+            判定
+            <span class="fas fa-angle-double-right"></span>
+        </h5>
+
         <p>{{ result.judge }}</p>
         <p class="sum">( 合計点：{{ result.a_sum }} )</p>
 
+        <h6>□ 各質問への回答 □</h6>
         <div class="tbl">
         <table border="1">
             <tr>

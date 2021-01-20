@@ -8,38 +8,110 @@
         <h2>{{ ana.name }}</h2>
         <p class="symbol"><span class="far fa-gem"></span></p>
 
-        <h5>結果</h5>
-        <table class="tabA">
-            <tr>
-                {% for f in range(0, result.a_sum|length) %}
-                    <td class="tdA">{{ ana.fac[f] }}</td>
-                    <td>{{ result.a_sum[f] }}　</td>
-                {% endfor %}
-            </tr>
-        </table>
+        <h5>
+            <span class="fas fa-angle-double-left"></span>
+            結果
+            <span class="fas fa-angle-double-right"></span>
+        </h5>
 
-        <div class="tbl">
-        <table class="tabB" border="1">
-            <tr class="ttl">
-                <th>No.</th>
-                <th>質問</th>
-                <th>回答</th>
-            </tr>
-            {% for que in range(0, ana.queries|length) %}
-            <tr class>
-                <td>{{ que+1 }}</td>
-                <td>{{ ana.queries[que] }}</td>
-                <td>{{ result.answers[que] }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+        <div class="chartA">
+            <!--img src="{{ url_for('views.plot_graph_indivi', ex_id=ex_id, result_id=result_id) }}" -->
+            <canvas id="Chart1" height="300" width="500"></canvas>
         </div>
 
-        <a href="{{ url_for('views.show_logs') }}">過去ログ画面へ</a>
+        <a href="#" class="tabA1">
+            <table class="tabA">
+                <tr>
+                    {% for f in range(0, ana.fac|length) %}
+                        <td class="tdA">{{ ana.fac[f] }}</td>
+                        <td>{{ result.a_sum[f] }}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+        </a>
+
         <br>
+        <h6>□ 各質問への回答 □</h6>
+        <div class="tbl">
+            <table class="tabB" border="1">
+                <tr class="ttl">
+                    <th>No.</th>
+                    <th>質問</th>
+                    <th>回答</th>
+                </tr>
+                {% for que in range(0, ana.queries|length) %}
+                <tr class>
+                    <td>{{ que+1 }}</td>
+                    <td>{{ ana.queries[que] }}</td>
+                    <td>{{ result.answers[que] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <a href="{{ url_for('views.show_logs') }}" class="log-btn">過去ログ画面へ</a>
+        <!--br-->
         <a href="{{ url_for('analyzes.analyzer_list') }}" class="list-btn">アナライザリスト画面へ</a>
 
     </div>
 </section>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    var items1 = {{ g_fac|safe }}
+    var data1 = {{ g_sum|safe }}
+    var chart_id1 = 'Chart1'
+    var config1 = mk_config(items1, data1, chart_id1);
+
+    window.onload = function() {
+        var ctx1 = document.getElementById(chart_id1).getContext('2d');
+        window.myLine = new Chart(ctx1, config1);
+
+    };
+
+    function　mk_config(items, data, chart_id) {
+        var config = {
+            type: 'bar',
+            data: {
+                labels: items,
+                datasets: [{
+                    backgroundColor: '#E68E9F',
+                    borderColor: '#ff6384',
+                    data: data,
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: false,
+                legend: false,
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 5
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Parsentail(%)'
+                        },
+                        ticks: {
+                            min: 0,
+                            max: 100,
+                            stepSize: 20
+                        }
+                    }]
+                }
+            }
+        };
+        return config
+    };
+
+</script>
 
 {% endblock %}

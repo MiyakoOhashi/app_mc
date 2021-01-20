@@ -64,10 +64,10 @@ class CES_D:                           #CES-Dメインプログラム
 
     def judge(self):     #テスト結果判定（うつ度）
         if session['a_sum'] >= 26:
-            return "重度抑うつ"
+            return "うつ度： 重度抑うつ"
         elif session['a_sum'] >= 21:
-            return "中度抑うつ"
+            return "うつ度： 中度抑うつ"
         elif session['a_sum'] >= 17:
-            return "軽度抑うつ"
+            return "うつ度： 軽度抑うつ"
         else:
-            return "正常"
+            return "うつ度： 正常（うつ状態ではない）"
