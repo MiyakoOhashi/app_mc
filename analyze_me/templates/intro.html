@@ -1,0 +1,38 @@
+<!-- analyze_me/templates/intro.html 2021/01/21  M.O-->
+{% extends "layout.html" %}
+
+<!-- ボディ　-->
+{% block body %}
+<section class="introA">
+    <div class="con">
+
+        <h2>Introduction</h2>
+        <p>ようこそ！</p>
+        <p class="symbol"><span class="far fa-gem"></span></p>
+        <!--img src="static/img/bottle.png" alt=""-->
+
+        <div class="conA">
+        <h5>□︎□︎　ANALyZE ME とは？　□︎□︎︎</h5>
+            <div class="conB">
+                <ul>
+                    <li>ANALyZE ME とは簡単は心理テストを行い、データを比較して自分の持つ傾向や、
+                        時間経過による推移などを見ることができるWEBアプリケーションです。</li>
+                    <li>ここでは、自分の心理状態を知るのに有効な以下５種類の心理テストを実施することができます。</li>
+                    <li>　1. TEGエゴグラム</li>
+                    <li>　　　自分の持つ自我状態の傾向（性格傾向）を確認するテストです。</li>
+                    <li>　2. POMS</li>
+                    <li>　　　自分の今現在の気分の状態を確認することができます。</li>
+                    <li>　3. CES-D</li>
+                    <li>　　　自分の現在のうつ的傾向を知ることができます。</li>
+                    <li>　4. FU(フュージョン)チェック</li>
+                    <li>　　　認知的フュージョン度を確認するテストです。</li>
+                    <li>　5. EQ(脱中心化)チェック</li>
+                    <li>　　　脱中心化尺度を確認するテストです。</li>
+                    <LI>早速登録して始めてみましょう！</LI>
+                </ul>
+            </div>
+        </div>
+        <a href="{{ url_for('analyzes.analyzer_list') }}">アナライザリストへ</a>
+    </div>
+</section>
+{% endblock %}

@@ -13,7 +13,7 @@ auth = Blueprint('auth', __name__)
 def signup():
     error = None
     if request.method == 'POST':            #ログイン画面入力時
-        user = auth_service.signup(request.form)
+        user, new_user = auth_service.signup(request.form)
         if user == 'empty':
             flash('未記入の項目があります')
             return render_template('auth/signup.html')
@@ -22,8 +22,17 @@ def signup():
             return redirect(url_for('auth.login'))
         else:
             flash('新規登録に成功しました')
-            return redirect(url_for('auth.login'))
+            #return redirect(url_for('auth.login'))
+            return redirect(url_for('auth.confirm', \
+                                    user_id = new_user.user_id, user_name=new_user.name))
     return render_template('auth/signup.html')    #サインアップ画面遷移時、入力エラー時
+
+
+#登録データ確認
+@auth.route('/confirm/<user_id>/<user_name>/', methods=['GET'])
+def confirm(user_id, user_name):
+    return render_template('auth/confirm.html', user_id=user_id, user_name=user_name)
+
 
 #ログイン
 @auth.route('/login', methods=['GET', 'POST'])

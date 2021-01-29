@@ -12,22 +12,32 @@
         <div class="conA">
         <ul>
             <li>
-                <a href="{{ url_for('analyzes.description', ex_id='teg') }}" >TEGエゴグラム</a>
+                <a class="ele" href="{{ url_for('analyzes.description', ex_id='teg') }}" >TEGエゴグラム</a>
             </li>
             <li>
-                <a href="{{ url_for('analyzes.description', ex_id='pom') }}" >POMS</a>
+                <a class="ele" href="{{ url_for('analyzes.description', ex_id='pom') }}" >POMS</a>
             </li>
             <li>
-                <a href= "{{ url_for('analyzes.description', ex_id='ces') }}" >CES-D</a>
+                <a class="ele" href= "{{ url_for('analyzes.description', ex_id='ces') }}" >CES-D</a>
             </li>
             <li>
-                <a href="{{ url_for('analyzes.description', ex_id='fu') }}" >FUチェック</a>
+                <a class="ele" href="{{ url_for('analyzes.description', ex_id='fu') }}" >FUチェック</a>
             </li>
             <li>
-                <a href="{{ url_for('analyzes.description', ex_id='eq') }}"  >EQチェック</a>
+                <a class="ele" href="{{ url_for('analyzes.description', ex_id='eq') }}"  >EQチェック</a>
             </li>
         </ul>
         </div>
+
+        {% if not current_user.is_authenticated %}
+        <p class="p1">未登録の方は
+                <span>
+                    <a href="{{ url_for('auth.signup') }}">ユーザー登録</a>
+                </span>
+                してください
+        </p>
+        {% endif %}
+
     </div>
 </section>
 

@@ -12,7 +12,7 @@ from analyze_me.services import analyzer_service, views_service
 def ex_all_data(ex_id):
     #テスト結果取得
     results = views_service.find_all(ex_id)
-    created_at = [ "", "", "", "", "", "", "", "", "", ""]
+    created_at = [ "emp", "emp", "emp", "emp", "emp", "emp", "emp", "emp", "emp", "emp"]
     a_sum = [ "", "", "", "", "", "", "", "", "", ""]
     i = 0
     for result in results:
@@ -21,7 +21,7 @@ def ex_all_data(ex_id):
         created_at.insert(0, '{0:%Y-%m-%d}'.format(result.created_at))
         created_at.pop()
         a_sum.insert(0, result.a_sum)
-        a_sum.pop
+        a_sum.pop()
         i += 1
 
     print("ex_id: {}, i: {}".format(ex_id, i))
@@ -82,7 +82,7 @@ def ex_one_data(ex_id, result_id):
         g_fac.pop()
         i = 0
         for i in range(0, 5):
-            g_sum.append(g_sum0[i] * 100 / 25)
+            g_sum.append(g_sum0[i] * 100 / 20)
             i += 1
 
     return g_fac, g_sum

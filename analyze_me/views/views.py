@@ -13,6 +13,11 @@ views = Blueprint('views', __name__)
 def index():
     return render_template('index.html')
 
+#導入ページ
+@views.route('/introduction/')
+def intro():
+    return render_template('intro.html')
+
 #過去ログページ
 @views.route('/logs/')
 @login_required
@@ -22,9 +27,9 @@ def show_logs():
     ces_results = views_service.find_all('ces')
     pom_results = views_service.find_all('pom')
     teg_results = views_service.find_all('teg')
-    ces_date, ces_asum = graph_service.ex_all_data('ces')  # ces-d
-    fu_date, fu_asum = graph_service.ex_all_data('fu')  # fu
-    eq_date, eq_asum = graph_service.ex_all_data('eq')  # eq
+    ces_date, ces_asum = graph_service.ex_all_data('ces')   # ces-d graph
+    fu_date, fu_asum = graph_service.ex_all_data('fu')      # fu graph
+    eq_date, eq_asum = graph_service.ex_all_data('eq')      # eq graph
     return render_template('logs/logs.html', fu_results=fu_results, \
                            eq_results=eq_results, ces_results=ces_results, \
                            pom_results=pom_results, teg_results=teg_results, \
@@ -32,7 +37,7 @@ def show_logs():
                            fu_asum=fu_asum, eq_date=eq_date, eq_asum=eq_asum)
 
 
-#グラフ表示(log画面)
+#グラフ表示(log画面):未使用
 @views.route('/logs/graph/')
 def plot_graph():
     response = graph_service.draw_three_graphs()

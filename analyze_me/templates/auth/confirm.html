@@ -1,0 +1,41 @@
+<!-- analyze_me/templates/confirm.html  2020/11/27  M.O-->
+{% extends "layout.html" %}
+{% block body %}
+
+    <section class="confA">
+        <div class="con">
+
+            <h2>CONFIRM</h2>
+            <p class="symbol"><span class="far fa-gem"></span></p>
+
+            <p>あなたは以下の内容で登録されました。</p>
+            <p>ログイン画面に移動し、ログインしてANALyZE MEを始めましょう！</p>
+            <div class="tbl">
+                <table border="1">
+                    <tr>
+                        <th>項目</th>
+                        <th>登録内容</th>
+                    </tr>
+                    <!-- ユーザID -->
+                    <tr>
+                        <td>User ID</td>
+                        <td>{{ user_id }}</td>
+                    </tr>
+                    <!-- ユーザ名 -->
+                    <tr>
+                        <td>User Name</td>
+                        <td>{{ user_name }}</td>
+                    </tr>
+                    <!-- パスワード -->
+                    <tr>
+                        <td>Password</td>
+                        <td>非表示</td>
+                    </tr>
+                </table>
+            </div>
+            <!-- 移動ボタン -->
+            <a href="{{ url_for('auth.login') }}">LOGIN画面へ</a>
+        </div>
+    </section>
+
+{% endblock %}

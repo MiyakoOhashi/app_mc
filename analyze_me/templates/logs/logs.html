@@ -4,7 +4,7 @@
 
 <section class="logA">
     <div class="con">
-        <h2>List of Logs</h2>
+        <h2>Lists of Logs</h2>
         <p>ようこそ{{ current_user.name }}さん！</p>
         <p class="symbol"><span class="far fa-gem"></span></p>
         <p>
@@ -15,7 +15,7 @@
         <!-- TEGエゴグラム結果表示 -->
         <div class="test-block">
             <h5>TEG_Egogram</h5>
-
+            <p>　　<< テスト結果一覧 >></p>
             <div class="tbl">
             <table border="1">
                 {% if teg_results %}
@@ -25,7 +25,7 @@
                     <th>詳細</th>
                 </tr>
                 {% else %}
-                    <p>結果がありません</p>
+                    <p>　　結果がありません</p>
                 {% endif %}
 
                 {% for teg_res in teg_results %}
@@ -57,7 +57,7 @@
         <!-- POMS結果表示 -->
         <div class="test-block">
             <h5>POMS</h5>
-
+            <p>　　<< テスト結果一覧 >></p>
             <div class="tbl">
             <table border="1">
                 {% if pom_results %}
@@ -67,7 +67,7 @@
                     <th>詳細</th>
                 </tr>
                 {% else %}
-                    <p>結果がありません</p>
+                    <p>　　結果がありません</p>
                 {% endif %}
 
                 {% for pom_res in pom_results %}
@@ -99,7 +99,7 @@
         <!-- CES-D結果表示 -->
         <div class="test-block">
             <h5>CES_D</h5>
-
+            <p>　　<< テスト結果一覧 >></p>
             <div class="tbl">
             <table border="1">
                 {% if ces_results %}
@@ -110,7 +110,7 @@
                     <th>詳細</th>
                 </tr>
                 {% else %}
-                    <p>結果がありません</p>
+                    <p>　　結果がありません</p>
                 {% endif %}
 
                 {% for ces_res in ces_results %}
@@ -135,10 +135,11 @@
             </table>
             </div>
 
+            <p>　　<< テスト結果推移（直近10件まで） >></p>
+            <div class="chartA">
+                <canvas id="cesChart" class="chartB" height="150" width="700"></canvas>
+            </div>
             {% if ces_results %}
-                <div class="chartA">
-                    <canvas id="cesChart" class="chartB" height="150" width="700"></canvas>
-                </div>
                 <!--div class="chart1">
                     <img src="{{ url_for('views.plot_graph') }}" >
                 </div-->
@@ -149,7 +150,7 @@
         <!-- FUチェック結果表示 -->
         <div class="test-block">
             <h5>FU_Check</h5>
-
+            <p>　　<< テスト結果一覧 >></p>
             <div class="tbl">
             <table border="1">
                 {% if fu_results %}
@@ -160,7 +161,7 @@
                     <th>詳細</th>
                 </tr>
                 {% else %}
-                    <p>結果がありません</p>
+                    <p>　　結果がありません</p>
                 {% endif %}
 
                 {% for fu_res in fu_results %}
@@ -185,10 +186,11 @@
             </table>
             </div>
 
+            <p>　　<< テスト結果推移（直近10件まで） >></p>
+            <div class="chartA">
+                <canvas id="fuChart" class="chartB" height="150" width="700"></canvas>
+            </div>
             {% if fu_results %}
-                <div class="chartA">
-                    <canvas id="fuChart" class="chartB" height="150" width="700"></canvas>
-                </div>
                 <!--div class="chart2">
                     <img src="{{ url_for('views.plot_graph') }}" >
                 </div-->
@@ -199,7 +201,7 @@
         <!-- EQチェック結果表示 -->
         <div class="test-block">
             <h5>EQ_Check</h5>
-
+            <p>　　<< テスト結果一覧 >></p>
             <div class="tbl">
             <table border="1">
                 {% if eq_results %}
@@ -210,7 +212,7 @@
                     <th>詳細</th>
                 </tr>
                 {% else %}
-                    <p>結果がありません</p>
+                    <p>　　結果がありません</p>
                 {% endif %}
 
                 {% for eq_res in eq_results %}
@@ -235,10 +237,11 @@
             </table>
             </div>
 
+            <p>　　<< テスト結果推移（直近10件まで） >></p>
+            <div class="chartA">
+                <canvas id="eqChart" class="chartB" height="150" width="700"></canvas>
+            </div>
             {% if eq_results %}
-                <div class="chartA">
-                    <canvas id="eqChart" class="chartB" height="150" width="700"></canvas>
-                </div>
                 <!--div class="chart3">
                     <img src="{{ url_for('views.plot_graph') }}" >
                 </div-->
@@ -253,23 +256,45 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
 <script type="text/javascript">
-
+    /* ces_d設定 */
     var items1 = {{ ces_date|safe }}
     var data1 = {{ ces_asum|safe }}
+    /* データ未登録部nullに置き換え */
+    for (let i = 0; i < 10; i++) {
+        if (data1[i] == "") {
+            data1[i] = null;
+        }
+    }
+    /*console.log(items1);
+    console.log(data1);*/
     var chart_id1 = 'cesChart'
-    var ymax1 = 30
+    var ymax1 = 60
     var config1 = mk_config(items1, data1, chart_id1, ymax1);
 
+    /* fu_check設定 */
     var items2 = {{ fu_date|safe }}
     var data2 = {{ fu_asum|safe }}
+    /* データ未登録部nullに置き換え */
+    for (let i = 0; i < 10; i++) {
+        if (data2[i] == "") {
+            data2[i] = null;
+        }
+    }
     var chart_id2 = 'fuChart'
-    var ymax2 = 40
+    var ymax2 = 50
     var config2 = mk_config(items2, data2, chart_id2, ymax2);
 
+    /* eq_check設定 */
     var items3 = {{ eq_date|safe }}
     var data3 = {{ eq_asum|safe }}
+    /* データ未登録部nullに置き換え */
+    for (let i = 0; i < 10; i++) {
+        if (data3[i] == "") {
+            data3[i] = null;
+        }
+    }
     var chart_id3 = 'eqChart'
-    var ymax3 = 40
+    var ymax3 = 50
     var config3 = mk_config(items3, data3, chart_id3, ymax3);
 
     window.onload = function() {
@@ -296,7 +321,8 @@
                 }]
             },
             options: {
-                responsive: false,
+                responsive: true,
+                maintainAspectRatio: false,
                 legend: false,
                 scales: {
                     xAxes: [{

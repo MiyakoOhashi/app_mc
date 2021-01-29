@@ -14,17 +14,19 @@ def signup(data: {}) -> User:
         print("ID: {}, NAME: {}, PASS: {}".format(user_id, username, password))
         if not user_id or not username or not password:
             user = 'empty'
-            return user
+            new_user = None
+            return user, new_user
         #ユーザ登録の有無を確認
         user = User.query.filter_by(user_id=user_id).first()
         if user:
-            return user
+            new_user = None
+            return user, new_user
         #ユーザ無の場合新規作成
         new_user = User.from_args(user_id, username, password)
         #データベース登録
         db.session.add(new_user)
         db.session.commit()
-        return user
+        return user, new_user
     except SQLAlchemyError:
         raise SQLAlchemyError
 
