@@ -59,19 +59,30 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
 <script type="text/javascript">
-
+    /* 定数設定 */
     var items1 = {{ g_fac|safe }}
     var data1 = {{ g_sum|safe }}
-    var chart_id1 = 'Chart1'
-    var config1 = mk_config(items1, data1, chart_id1);
+    var ex_id = "{{ ex_id }}"
+    if (ex_id == "teg") {
+            var ylabel = 'Percentile(%)';
+            var ymin = 0;
+            var ymax = 100;
+            var ssize = 20;
+    } else if(ex_id == "pom") {
+            var ylabel = 'T得点';
+            var ymin = 25;
+            var ymax = 85;
+            var ssize = 10;
+    }
+    var config1 = mk_config(items1, data1, ylabel, ymin, ymax, ssize);
 
     window.onload = function() {
-        var ctx1 = document.getElementById(chart_id1).getContext('2d');
+        var ctx1 = document.getElementById('Chart1').getContext('2d');
         window.myLine = new Chart(ctx1, config1);
 
     };
 
-    function　mk_config(items, data, chart_id) {
+    function　mk_config(items, data, ylabel, ymin, ymax, ssize) {
         var config = {
             type: 'bar',
             data: {
@@ -98,12 +109,12 @@
                         display: true,
                         scaleLabel: {
                             display: true,
-                            labelString: 'Percentile(%)'
+                            labelString: ylabel
                         },
                         ticks: {
-                            min: 0,
-                            max: 100,
-                            stepSize: 20
+                            min: ymin,
+                            max: ymax,
+                            stepSize: ssize
                         }
                     }]
                 }
