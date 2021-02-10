@@ -8,6 +8,10 @@
         <h2>{{ ana.name }}</h2>
         <p class="symbol"><span class="far fa-gem"></span></p>
 
+        <h5 class="jishi">
+            {{ "{0:%Y-%m-%d}".format(result.created_at) }}実施
+        </h5>
+
         <h5>
             <span class="fas fa-angle-double-left"></span>
             結果
@@ -16,19 +20,23 @@
 
         <div class="chartA">
             <!--img src="{{ url_for('views.plot_graph_indivi', ex_id=ex_id, result_id=result_id) }}" -->
-            <canvas id="Chart1" height="300" width="500"></canvas>
+            <canvas id="Chart1" height="300" width="450"></canvas>
         </div>
 
-        <a href="#" class="tabA1">
-            <table class="tabA">
-                <tr>
-                    {% for f in range(0, ana.fac|length) %}
-                        <td class="tdA">{{ ana.fac[f] }}</td>
-                        <td>{{ result.a_sum[f] }}</td>
-                    {% endfor %}
-                </tr>
-            </table>
-        </a>
+        <div>
+        <table class="tabA">
+            <tr>
+                {% for f in range(0, ana.fac|length) %}
+                <td class="tdA">{{ ana.fac[f] }}</td>
+                <td>{{ result.a_sum[f] }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+
+        {% if ex_id=="teg" %}
+        <a href="{{ url_for('views.desc_teg', ex_id=ex_id, result_id=result_id) }}" class="descT">※パラメータについて※</a>
+        {% endif %}
+        </div>
 
         <br>
         <h6>□ 各質問への回答 □</h6>
@@ -57,7 +65,8 @@
 </section>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@0.5.7/chartjs-plugin-annotation.js"></script>
 <script type="text/javascript">
     /* 定数設定 */
     var items1 = {{ g_fac|safe }}
@@ -74,31 +83,39 @@
             var ymax = 85;
             var ssize = 10;
     }
-    var config1 = mk_config(items1, data1, ylabel, ymin, ymax, ssize);
+    var data = mk_data(items1, data1);
+    var options = mk_options(ylabel, ymin, ymax, ssize, items1, ex_id);
 
     window.onload = function() {
-        var ctx1 = document.getElementById('Chart1').getContext('2d');
-        window.myLine = new Chart(ctx1, config1);
-
+        var ctx = document.getElementById('Chart1').getContext('2d');
+        window.myLine = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
     };
 
-    function　mk_config(items, data, ylabel, ymin, ymax, ssize) {
-        var config = {
-            type: 'bar',
-            data: {
-                labels: items,
-                datasets: [{
-                    backgroundColor: '#E68E9F',
-                    borderColor: '#ff6384',
-                    data: data,
-                    fill: false,
-                }]
-            },
-            options: {
+    function　mk_data(items, data) {
+        var data = {
+            labels: items,
+            datasets: [{
+                backgroundColor: '#E68E9F',
+                borderColor: '#ff6384',
+                data: data,
+                fill: false,
+            }]
+        };
+        return data
+    };
+
+    function　mk_options(ylabel, ymin, ymax, ssize, items1, ex_id) {
+        console.log(ex_id);
+        var options = {
                 responsive: false,
                 legend: false,
                 scales: {
                     xAxes: [{
+                        id: 'x-axis-0',
                         display: true,
                         ticks: {
                             autoSkip: true,
@@ -106,6 +123,7 @@
                         }
                     }],
                     yAxes: [{
+                        id: 'y-axis-0',
                         display: true,
                         scaleLabel: {
                             display: true,
@@ -117,10 +135,39 @@
                             stepSize: ssize
                         }
                     }]
+                },
+                annotation: {
+                    drawTime: "beforeDatasetsDraw",
+                    /*events: ['dblclick'],*/
+                    annotations: [
+                        makeAnnotations('box-1', -0.5, 2.5, 75, 85),
+                        makeAnnotations('box-2', 3.5, 6.5, 75, 85),
+                        makeAnnotations('box-3', 2.5, 3.5, 25, 35)
+                    ],
                 }
-            }
         };
-        return config
+        return options
+    };
+
+    function makeAnnotations(id0, xmin0, xmax0, ymin0, ymax0) {
+        annotations = {
+            type: 'box',
+            display: true,
+            id: id0,
+            xScaleID: 'x-axis-0',
+            yScaleID: 'y-axis-0',
+            xMin: xmin0,
+            xMax: xmax0,
+            yMin: ymin0,
+            yMax: ymax0,
+            backgroundColor: 'rgba(119, 199, 230, 0.4)',
+            borderColor: 'rgba(119, 199, 230, 0.4)',
+            borderWidth: 0,
+            /*onDblclick: function(e) {
+                console.log('Box', e.type, this);
+            }*/
+        }
+        return annotations
     };
 
 </script>

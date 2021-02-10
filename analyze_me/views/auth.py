@@ -1,5 +1,6 @@
 #analyze_me/views/auth.py       2020/12/01   M.O
 #ログイン関連用viewファイル
+from flask import current_app as app
 from flask import request, redirect, url_for, \
     render_template, flash, session, Blueprint
 #from functools import wraps

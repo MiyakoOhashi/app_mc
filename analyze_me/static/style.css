@@ -616,6 +616,14 @@ body {
     opacity: 0.5;
 }
 
+.resA .jishi {
+    padding: 4px 0;
+    background-color: #3A7E99;
+    background-color: var(--dark-color);
+    color: #fff;
+    color: var(--text-bright-color);
+}
+
 .resA p {
     margin: 0;
 }
@@ -730,6 +738,14 @@ body {
     margin: 0 0 30px;
 }
 
+.resB .jishi {
+    padding: 4px 0;
+    background-color: #3A7E99;
+    background-color: var(--dark-color);
+    color: #fff;
+    color: var(--text-bright-color);
+}
+
 .resB .chartA {
     padding-right: 40px;
     padding-bottom: 10px;
@@ -758,6 +774,20 @@ body {
 
 .resB .tabA td {
     width: 30px;
+}
+
+.resB .descT {
+    margin: 0 1rem;
+    font-size: 12px;
+    padding: 5px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.resB .descT:hover {
+    text-decoration: none;
+    color: inherit;
+    background-color: rgba(0,0,0,0.3);
 }
 
 .resB .tbl {
@@ -838,6 +868,193 @@ body {
         rgba(255,255,255,0.2)
     );
 }
+
+/* TEGパラメタ解説画面 */
+.desc_T {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    height: 100vh;
+    min-height: 450px;
+    width: 100vw;
+    min-width: 400px;
+    color: #000;
+    color: var(--text-dark-color);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.desc_T .con {
+    margin-top: 60px;
+    max-width: 900px;
+    max-width: var(--middle-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 15px;
+}
+
+.desc_T h2 {
+    margin: 30px 0 0;
+    font-family: 'Big Shoulders Stencil Display', cursive;
+    font-size: 3.8rem;
+    /* font-size: 60px; */
+    letter-spacing: 0.1em;
+    margin-left: 0.1em;
+}
+
+.desc_T h5 {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+}
+
+.desc_T .symbol {
+    margin: 1.25rem;
+    /* margin: 20px; */
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 2rem;
+    /* font-size: 28px; */
+    opacity: 0.5;
+}
+
+.desc_T p {
+    margin: 0;
+}
+
+.desc_T .sum {
+    margin: 0 0 30px;
+}
+
+.desc_T .tbl {
+    /*overflow-y: scroll;*/
+    /*height: 280px;*/
+    margin-bottom: 2rem;
+}
+
+.desc_T .high_low p {
+    display: inline-block;
+}
+
+.desc_T .high_low .high {
+    float: left;
+    margin-left: 15%;
+}
+
+.desc_T .high_low .low {
+    float: right;
+    margin-right: 15%;
+}
+
+.desc_T table {
+    margin: 0 auto 1rem auto;
+    font-size: 12px;
+    text-align: left;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.desc_T table th,
+.desc_T table td {
+    padding: 0 3px;
+}
+
+.desc_T tr {
+    margin: 1px 1px;
+}
+
+.desc_T .para {
+    background-color: #3A7E99;
+    background-color: var(--dark-color);
+    color: #fff;
+    color: var(--text-bright-color);
+    width: 13%;
+    /*text-align: center;*/
+}
+
+.desc_T .para .fac {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/*
+.desc_T .state {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 250px;
+    padding; 10px;
+    border-radius: 5px;
+    background-color: #77C7E6;
+    background-color: var(--main-color);
+    color: #fff;
+    color: var(--text-bright-color);
+}
+
+.desc_T .state:after {
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 0;
+    bottom: -19px;
+    margin-left: 10px;
+    border: solid transparent;
+    border-color: rgba(51, 204, 153, 0);
+    border-top-color: #33cc99;
+    border-width: 10px;
+    pointer-events: none;
+    content: " ";
+}
+
+.dasc_T .para:hover + .state {
+    display: block;
+}
+*/
+.desc_T ul {
+    /*margin: 0;*/
+    padding: 2px;
+    list-style: none;
+}
+
+.desc_T .l {
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
+
+.desc_T a {
+    display: inline-block;
+    padding: 10px;
+    margin: 0 2px 0.5rem 2px;
+    width: 250px;
+    border: solid 3px currentColor;
+    border-radius: 6px;
+    background-color: #E68E9F;
+    background-color: var(--accent-color);
+    color: #fff;
+    color: var(--text-bright-color);
+    /* font-size: 14px; */
+    text-decoration: none;
+}
+
+.desc_T a:hover {
+    color: #fff;
+    color: var(--text-bright-color);
+    text-decoration: none;
+    background-image: linear-gradient(
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0.2)
+    );
+}
+
+.desc_T .list-btn {
+    background-color: #3A7E99;
+    background-color: var(--dark-color);
+}
+
+
 
 /* 結果一覧画面 */
 .logA {

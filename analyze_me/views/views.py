@@ -1,9 +1,11 @@
 #analyze_me/views.py       2020/9/17   M.O
 #ログイン関連用viewファイル
+from flask import current_app as app
 from flask import request, redirect, url_for, \
     render_template, flash, session, Blueprint
 from flask_login import login_required
-from analyze_me.services import analyzer_service, views_service, graph_service
+from analyze_me.services import analyzer_service, \
+    views_service, graph_service, desc_indivi_service
 
 #ブループリント設定
 views = Blueprint('views', __name__)
@@ -72,12 +74,18 @@ def result(ex_id, result_id):
                                 ana=ana, result=result)
 
 
+@views.route('/description_<ex_id>/<result_id>')
+def desc_teg(ex_id, result_id):
+    if ex_id == "teg":
+        desc = desc_indivi_service.Desc_teg()
+    return render_template('logs/desc01_teg.html', ex_id=ex_id, result_id=result_id, desc=desc)
+
+
 #グラフ表示(個別画面＿TEG, POMS)
 @views.route('/logs/graph/<ex_id>/<result_id>/')
 def plot_graph_indivi(ex_id, result_id):
     response = graph_service.draw_graph(ex_id, result_id)
     return response
-
 
 #404エラー時処理
 @views.errorhandler(404)

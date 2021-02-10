@@ -1,0 +1,87 @@
+<!-- analyze_me/templates/logs/desc01_teg.html 2021/02/06  M.O-->
+{% extends "layout.html" %}
+{% block body %}
+
+<section class="desc_T">
+    <div class="con">
+
+        <h2>About Parameters</h2>
+        <p class="symbol"><span class="far fa-gem"></span></p>
+
+        <h5>TEG_Egogramのパラメータについて</h5>
+
+        <p>それぞれパラメータが示すもの、得点が高い時・低い時それぞれの良い面、悪い面を書き記します。</p>
+        <p>自分の状態を確かめるときの参考にしてください。</p>
+
+        <br><br>
+
+        <div class="tbl">
+            <!--p>各パラメータの意味するところ</p-->
+            <div class="high_low">
+                <p class="high">
+                    <i class="fas fa-arrow-alt-circle-up"></i>
+                     得点が高い
+                    <i class="fas fa-arrow-alt-circle-up"></i>
+                </p>
+                <p class="low">
+                    <i class="fas fa-arrow-alt-circle-down"></i>
+                     得点が低い
+                    <i class="fas fa-arrow-alt-circle-down"></i>
+                </p>
+            </div>
+        <table border="1">
+            <tr>
+                <th>良い面</th>
+                <th>悪い面</th>
+                <th class="para">自我状態</th>
+                <th>良い面</th>
+                <th>悪い面</th>
+            </tr>
+            {% for f in range(desc.fac|length) %}
+            <tr>
+                <td>
+                    <ul>
+                        {% for i in range(desc.high_good[f]|length) %}
+                        <li>{{ desc.high_good[f][i] }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {% for i in range(desc.high_bad[f]|length) %}
+                        <li>{{ desc.high_bad[f][i] }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td class="para">
+                    <p class="fac">{{ desc.fac[f] }}</p>
+                    <p>{{ desc.meaning[f] }}</p><br>
+                    <p class="state">{{ desc.state[f] }}</p>
+                </td>
+                <td>
+                    <ul>
+                        {% for i in range(desc.low_good[f]|length) %}
+                        <li>{{ desc.low_good[f][i] }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {% for i in range(desc.low_bad[f]|length) %}
+                        <li>{{ desc.low_bad[f][i] }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <p class="l">※ L : 妥当性尺度・・・テストの信頼性を測る。著しく高い場合、テスト結果の信頼性は乏しい。</p>
+        </div>
+
+        <a href="{{ url_for('views.show_logs') }}">過去ログ画面へ</a>
+        <a href="{{ url_for('views.result', ex_id=ex_id, result_id=result_id) }}" class="list-btn">元の画面へ</a>
+
+    </div>
+</section>
+
+{% endblock %}

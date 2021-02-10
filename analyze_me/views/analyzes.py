@@ -1,5 +1,6 @@
 #analyze_me/analyzes.py       2020/10/07   M.O
 #コンテンツ関連viewファイル
+from flask import current_app as app
 from flask import request, redirect, url_for, \
     render_template, flash, session
 from flask import Blueprint
@@ -34,9 +35,9 @@ def analyzer(ex_id):
             ans = request.form.get('answer')
             ana.cal(int(ans))
             session['que'] += 1
-            print("ただいまの質問：{}".format(session['que']))
-            print("ANSWER：{}".format(session['answers']))
-            print("A_SUM: {}".format(session['a_sum']))
+            #print("ただいまの質問：{}".format(session['que']))
+            #print("ANSWER：{}".format(session['answers']))
+            #print("A_SUM: {}".format(session['a_sum']))
         except TypeError:
             flash('回答が選択されていません。')
 
