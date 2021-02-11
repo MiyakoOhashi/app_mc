@@ -254,7 +254,8 @@
     </div>
 </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@0.5.7/chartjs-plugin-annotation.js"></script>
 <script type="text/javascript">
     /* ces_d設定 */
     var items1 = {{ ces_date|safe }}
@@ -269,7 +270,8 @@
     console.log(data1);*/
     var chart_id1 = 'cesChart'
     var ymax1 = 60
-    var config1 = mk_config(items1, data1, chart_id1, ymax1);
+    var an_ymin1 = 17
+    var config1 = mk_config(items1, data1, chart_id1, ymax1, an_ymin1, 'ces');
 
     /* fu_check設定 */
     var items2 = {{ fu_date|safe }}
@@ -282,7 +284,8 @@
     }
     var chart_id2 = 'fuChart'
     var ymax2 = 50
-    var config2 = mk_config(items2, data2, chart_id2, ymax2);
+    var an_ymin2 = 27
+    var config2 = mk_config(items2, data2, chart_id2, ymax2, an_ymin2, 'fu');
 
     /* eq_check設定 */
     var items3 = {{ eq_date|safe }}
@@ -295,7 +298,8 @@
     }
     var chart_id3 = 'eqChart'
     var ymax3 = 50
-    var config3 = mk_config(items3, data3, chart_id3, ymax3);
+    var an_ymin3 = 25
+    var config3 = mk_config(items3, data3, chart_id3, ymax3, an_ymin3, 'eq');
 
     window.onload = function() {
         var ctx1 = document.getElementById(chart_id1).getContext('2d');
@@ -308,7 +312,7 @@
         window.myLine = new Chart(ctx3, config3);
     };
 
-    function　mk_config(items, data, chart_id, ymax) {
+    function　mk_config(items, data, chart_id, ymax, an_ymin, ex_id) {
         var config = {
             type: 'line',
             data: {
@@ -327,6 +331,7 @@
                 scales: {
                     xAxes: [{
                         display: true,
+                        id: 'x-axis-0',
                         ticks: {
                             autoSkip: false,
                             maxTicksLimit: 10,
@@ -335,6 +340,7 @@
                     }],
                     yAxes: [{
                         display: true,
+                        id: 'y-axis-0',
                         scaleLabel: {
                             display: true,
                         },
@@ -344,10 +350,38 @@
                             stepSize: 10
                         }
                     }]
+                },
+                annotation: {
+                    drawTime: "beforeDatasetsDraw",
+                    /*events: ['dblclick'],*/
+                    annotations: [
+                        makeAnnotations('box-1', an_ymin, 60, ex_id),
+                    ],
                 }
             }
         };
         return config
+    };
+
+    function makeAnnotations(id0, ymin0, ymax0, ex_id) {
+        annotations = {
+            type: 'box',
+            display: false,
+            id: id0,
+            xScaleID: 'x-axis-0',
+            yScaleID: 'y-axis-0',
+            xMin: 0,
+            xMax: 9,
+            yMin: ymin0,
+            yMax: ymax0,
+            backgroundColor: 'rgba(119, 199, 230, 0.4)',
+            borderColor: 'rgba(119, 199, 230, 0.4)',
+            borderWidth: 0,
+            /*onDblclick: function(e) {
+                console.log('Box', e.type, this);
+            }*/
+        }
+        return annotations
     };
 
 </script>

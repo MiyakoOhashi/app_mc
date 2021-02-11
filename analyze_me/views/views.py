@@ -74,14 +74,15 @@ def result(ex_id, result_id):
                                 ana=ana, result=result)
 
 
-@views.route('/description_<ex_id>/<result_id>')
+#TEG パラメータ説明
+@views.route('/description_<ex_id>/<result_id>/')
 def desc_teg(ex_id, result_id):
     if ex_id == "teg":
         desc = desc_indivi_service.Desc_teg()
     return render_template('logs/desc01_teg.html', ex_id=ex_id, result_id=result_id, desc=desc)
 
 
-#グラフ表示(個別画面＿TEG, POMS)
+#グラフ表示(個別画面＿TEG, POMS):未使用
 @views.route('/logs/graph/<ex_id>/<result_id>/')
 def plot_graph_indivi(ex_id, result_id):
     response = graph_service.draw_graph(ex_id, result_id)

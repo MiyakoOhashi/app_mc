@@ -109,7 +109,6 @@
     };
 
     function　mk_options(ylabel, ymin, ymax, ssize, items1, ex_id) {
-        console.log(ex_id);
         var options = {
                 responsive: false,
                 legend: false,
@@ -140,32 +139,35 @@
                     drawTime: "beforeDatasetsDraw",
                     /*events: ['dblclick'],*/
                     annotations: [
-                        makeAnnotations('box-1', -0.5, 2.5, 75, 85),
-                        makeAnnotations('box-2', 3.5, 6.5, 75, 85),
-                        makeAnnotations('box-3', 2.5, 3.5, 25, 35)
+                        makeAnnotations('box-1', -0.5, 2.5, 75, 85, ex_id),
+                        makeAnnotations('box-2', 3.5, 6.5, 75, 85, ex_id),
+                        makeAnnotations('box-3', 2.5, 3.5, 25, 35, ex_id)
                     ],
                 }
         };
         return options
     };
 
-    function makeAnnotations(id0, xmin0, xmax0, ymin0, ymax0) {
-        annotations = {
-            type: 'box',
-            display: true,
-            id: id0,
-            xScaleID: 'x-axis-0',
-            yScaleID: 'y-axis-0',
-            xMin: xmin0,
-            xMax: xmax0,
-            yMin: ymin0,
-            yMax: ymax0,
-            backgroundColor: 'rgba(119, 199, 230, 0.4)',
-            borderColor: 'rgba(119, 199, 230, 0.4)',
-            borderWidth: 0,
-            /*onDblclick: function(e) {
-                console.log('Box', e.type, this);
-            }*/
+    function makeAnnotations(id0, xmin0, xmax0, ymin0, ymax0, ex_id) {
+        annotations = {}
+        if (ex_id == 'pom') {
+            annotations = {
+                type: 'box',
+                display: false,
+                id: id0,
+                xScaleID: 'x-axis-0',
+                yScaleID: 'y-axis-0',
+                xMin: xmin0,
+                xMax: xmax0,
+                yMin: ymin0,
+                yMax: ymax0,
+                backgroundColor: 'rgba(119, 199, 230, 0.4)',
+                borderColor: 'rgba(119, 199, 230, 0.4)',
+                borderWidth: 0,
+                /*onDblclick: function(e) {
+                    console.log('Box', e.type, this);
+                }*/
+            }
         }
         return annotations
     };
