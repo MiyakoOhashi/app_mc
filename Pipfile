@@ -12,6 +12,7 @@ flask-script = "*"
 flask-login = "*"
 sqlalchemy = "*"
 matplotlib = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.7"

@@ -6,14 +6,17 @@ from flask_login import LoginManager
 #sqlalchemyを通しflaskからdbへアクセスする入口
 db = SQLAlchemy()
 
-
 #app生成
-def create_app():
+def create_app(test_config=None):
     # Flaskアプリ生成
     app = Flask(__name__)
 
     #コンフィグ召喚
     app.config.from_object('analyze_me.config')
+
+    #テストコンフィグ召喚
+    if test_config:
+        app.config.from_mapping(test_config)
 
     #アプリケーションとデータベースの紐付け
     db.init_app(app)

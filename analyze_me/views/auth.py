@@ -25,14 +25,17 @@ def signup():
             flash('新規登録に成功しました')
             #return redirect(url_for('auth.login'))
             return redirect(url_for('auth.confirm', \
-                                    user_id = new_user.user_id, user_name=new_user.name))
+                                    user_id = new_user.user_id, \
+                                    user_name=new_user.name, \
+                                    gender=new_user.gender))
     return render_template('auth/signup.html')    #サインアップ画面遷移時、入力エラー時
 
 
 #登録データ確認
-@auth.route('/confirm/<user_id>/<user_name>/', methods=['GET'])
-def confirm(user_id, user_name):
-    return render_template('auth/confirm.html', user_id=user_id, user_name=user_name)
+@auth.route('/confirm/<user_id>/<user_name>/<gender>', methods=['GET'])
+def confirm(user_id, user_name, gender):
+    return render_template('auth/confirm.html', user_id=user_id, \
+                           user_name=user_name, gender=gender)
 
 
 #ログイン

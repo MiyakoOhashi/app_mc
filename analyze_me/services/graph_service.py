@@ -6,6 +6,7 @@ import urllib
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
+from flask_login import current_user
 from analyze_me.services import analyzer_service, views_service
 
 #全データ抽出
@@ -139,24 +140,69 @@ def conv_data(ex_id, g_sum0, g_sum):
     ]
     #TEGグラフ用数値換算
     if ex_id == "teg":
-        for i in range(0, 5):
-            for j in range(0, len(teg_m[i])):
-                if g_sum0[i] >= len(teg_m[i]):
-                    g_sum.append(teg_m[i][len(teg_m[i])-1])
-                    break
-                elif g_sum0[i] == j:
-                    g_sum.append(teg_m[i][j])
-                    break
+        #男性用グラフ
+        if current_user.gender == "male":
+            for i in range(0, 5):
+                for j in range(0, len(teg_m[i])):
+                    if g_sum0[i] >= len(teg_m[i]):
+                        g_sum.append(teg_m[i][len(teg_m[i])-1])
+                        break
+                    elif g_sum0[i] == j:
+                        g_sum.append(teg_m[i][j])
+                        break
+        #女性用グラフ
+        elif current_user.gender == "female":
+            for i in range(0, 5):
+                if i is 1:
+                    for j in range(0, len(teg_f[i])):
+                        if g_sum0[i] - 3 >= len(teg_f[i]):
+                            g_sum.append(teg_f[i][len(teg_f[i]) - 1])
+                            break
+                        elif g_sum0[i] <= 3:
+                            if g_sum0[i] == j:
+                                g_sum.append(teg_f[i][j])
+                                break
+                        elif g_sum0[i] <= 21:
+                            if g_sum0[i] - 1 == j:
+                                g_sum.append(teg_f[i][j])
+                                break
+                        elif g_sum0[i] <= 39:
+                            if g_sum0[i] - 2 == j:
+                                g_sum.append(teg_f[i][j])
+                                break
+                        else:
+                            if g_sum0[i] - 3 == j:
+                                g_sum.append(teg_f[i][j])
+                                break
+                else:
+                    for j in range(0, len(teg_f[i])):
+                        if g_sum0[i] >= len(teg_f[i]):
+                            g_sum.append(teg_f[i][len(teg_f[i])-1])
+                            break
+                        elif g_sum0[i] == j:
+                            g_sum.append(teg_f[i][j])
+                            break
+
     #POMSグラフ用数値換算
     elif ex_id == "pom":
-        for i in range(0, 6):
-            for j in range(0, len(pom_m[i])):
-                if g_sum0[i] >= len(pom_m[i]):
-                    g_sum.append(pom_m[i][len(pom_m[i])-1])
-                    break
-                elif g_sum0[i] == j:
-                    g_sum.append(pom_m[i][j])
-                    break
+        if current_user.gender == "male:":
+            for i in range(0, 6):
+                for j in range(0, len(pom_m[i])):
+                    if g_sum0[i] >= len(pom_m[i]):
+                        g_sum.append(pom_m[i][len(pom_m[i])-1])
+                        break
+                    elif g_sum0[i] == j:
+                        g_sum.append(pom_m[i][j])
+                        break
+        elif current_user.gender == "female":
+            for i in range(0, 6):
+                for j in range(0, len(pom_f[i])):
+                    if g_sum0[i] >= len(pom_f[i]):
+                        g_sum.append(pom_f[i][len(pom_f[i])-1])
+                        break
+                    elif g_sum0[i] == j:
+                        g_sum.append(pom_f[i][j])
+                        break
 
 
 #個別データ抽出及びデータ換算（POMS, TEG）

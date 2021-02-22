@@ -11,8 +11,9 @@ def signup(data: {}) -> User:
         user_id = data.get('user_id')
         username = data.get('username')
         password = data.get('password')
-        print("ID: {}, NAME: {}, PASS: {}".format(user_id, username, password))
-        if not user_id or not username or not password:
+        gender = data.get('gender')
+        #print("ID: {}, NAME: {}, PASS: {}, Gender: {}".format(user_id, username, password, gender))
+        if not user_id or not username or not password or not gender:
             user = 'empty'
             new_user = None
             return user, new_user
@@ -22,7 +23,7 @@ def signup(data: {}) -> User:
             new_user = None
             return user, new_user
         #ユーザ無の場合新規作成
-        new_user = User.from_args(user_id, username, password)
+        new_user = User.from_args(user_id, username, password, gender)
         #データベース登録
         db.session.add(new_user)
         db.session.commit()

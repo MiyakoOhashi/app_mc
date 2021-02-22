@@ -8,10 +8,11 @@ from sqlalchemy.orm import relationship
 #個人情報エントリ
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.String(50), unique=True)
-    name = db.Column(db.String(30))
-    password = db.Column(db.String(20), unique=True)
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    user_id = db.Column(db.String(50), unique=True, nullable=False)
+    name = db.Column(db.String(30), nullable=False)
+    password = db.Column(db.String(20), unique=True, nullable=False)
+    gender = db.Column(db.String(20), nullable=False)
     created_at = db.Column(db.DateTime)
 
     fu_results = relationship('FU_results')
@@ -21,12 +22,13 @@ class User(UserMixin, db.Model):
     teg_results = relationship('TEG_results')
 
     @classmethod
-    def from_args(cls, user_id:str, name:str, password:str):
+    def from_args(cls, user_id:str, name:str, password:str, gender:str):
         instance = cls()
         instance.user_id = user_id
-        instance.name= name
+        instance.name = name
         if password is not None:
             instance.hash_password(password)
+        instance.gender = gender
         instance.created_at = datetime.utcnow()
         return instance
 
