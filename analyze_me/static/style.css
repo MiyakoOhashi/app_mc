@@ -1292,6 +1292,46 @@ body {
     font-size: 12px;
 }
 
+.loginA .radio {
+    display: none;
+}
+
+.loginA .label {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    width: 100px;
+    border: solid 1px currentColor;
+    border-radius: 6px;
+    background-color: #fff;
+    background-color: var(--text-bright-color);
+    color: #000;
+    color: var(--text-dark-color);
+    /* font-size: 14px; */
+    text-decoration: none;
+
+}
+
+.loginA .label:hover {
+    text-decoration: none;
+    color: #fff;
+    color: var(--text-bright-color);
+    background-color: #3A7E99;
+    background-color: var(--dark-color);
+    background-image: linear-gradient(
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0.2)
+    );
+}
+
+.loginA input[type="radio"]:checked + label {
+    color: #fff;
+    color: var(--text-bright-color);
+    background-color: #3A7E99;
+    background-color: var(--dark-color);
+}
+
+
 /* 登録内容表示画面 */
 .confA {
     display: flex;
